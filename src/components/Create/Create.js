@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import './App.css';
-import Form from './components/Form/Form.js';
+import './create.css';
 
-class App extends Component {
+class Create extends Component {
   render() {
     return (
       <div className="App">
-        <h1>AppTitle</h1>
-        <Form/>
+        <h1>Create</h1>
       </div>
     );
   }
