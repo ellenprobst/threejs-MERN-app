@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Slider from '@material-ui/lab/Slider'
 import Switch from '@material-ui/core/Switch'
+import Button from '@material-ui/core/Button'
 
 import './form.css'
 
@@ -40,12 +41,17 @@ class Form extends Component {
 		this.setState({ [name]: event.target.checked })
 	}
 
+	handleSubmit = e => {
+		e.preventDefault()
+		console.log('%c submitted ', 'background: darkcyan; color: #fff; padding: 2px;')
+	}
+
 	render() {
 		const { classes } = this.props
 		const { size, color } = this.state
 
 		return (
-			<form autoComplete="off">
+			<form autoComplete="off" onSubmit={this.handleSubmit}>
 				<TextField
 					id="title"
 					label="Title"
@@ -81,6 +87,10 @@ class Form extends Component {
 				<Switch checked={this.state.isWireframe} onChange={this.handleSwitch('isWireframe')} value="isWireframe" />
 
 				<Switch checked={this.state.hasChildren} onChange={this.handleSwitch('hasChildren')} value="hasChildren" />
+
+				<Button type="submit" variant="outlined" size="medium" color="primary" className={classes.button}>
+					Save
+				</Button>
 			</form>
 		)
 	}
