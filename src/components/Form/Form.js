@@ -1,66 +1,93 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
-import TextField from '@material-ui/core/TextField';
-import Slider from '@material-ui/lab/Slider';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField'
+import Slider from '@material-ui/lab/Slider'
+import Switch from '@material-ui/core/Switch'
 
-import './form.css';
+import './form.css'
 
 const styles = {
-  container: {
-    width: 150,
-  }
-};
+	container: {
+		width: 150
+	}
+}
 
 class Form extends Component {
+	state = {
+		title: '',
+		size: 3,
+		color: 3,
+		geometry: '',
+		isAnimated: false,
+		isWireframe: false,
+		hasChildren: false
+	}
 
-  state = {
-    title: '',
-    value: 3
-  }
+	handleChange = title => event => {
+		this.setState({
+			[title]: event.target.value
+		})
+	}
 
-  handleChange = title => event => {
-    this.setState({
-      [title]: event.target.value,
-    });
-  };
+	handleSelect = name => (event, value) => {
+		this.setState({ [name]: value })
+	}
 
-  handleSelect = (event, value) => this.setState({ value });
+	handleSwitch = name => event => {
+		this.setState({ [name]: event.target.checked })
+	}
 
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
+	render() {
+		const { classes } = this.props
+		const { size, color } = this.state
 
-    return (
-      <form autoComplete="off">
-        <TextField
-          id="title"
-          label="Title"
-          value={this.state.title}
-          onChange={this.handleChange('name')}
-          margin="normal"
-        />
+		return (
+			<form autoComplete="off">
+				<TextField
+					id="title"
+					label="Title"
+					value={this.state.title}
+					onChange={this.handleChange('title')}
+					margin="normal"
+				/>
 
-        <div className={classes.container}>
-          <Slider value={value} min={0} max={6} step={1} onChange={this.handleSelect} />
-          <Slider value={value} min={0} max={6} step={1} onChange={this.handleSelect} />
-        </div>
+				<div className={classes.container}>
+					<Typography id="labelSize">Size</Typography>
+					<Slider
+						data-name="size"
+						value={size}
+						min={0}
+						max={6}
+						step={1}
+						aria-labelledby="labelSize"
+						onChange={this.handleSelect('size')}
+					/>
+					<Typography id="labelColor">Color</Typography>
+					<Slider
+						value={color}
+						min={0}
+						max={6}
+						step={1}
+						aria-labelledby="labelColor"
+						onChange={this.handleSelect('color')}
+					/>
+				</div>
 
-        <Button variant="fab" color="secondary" aria-label="edit" className={classes.button}>
-          <AddIcon/>
-        </Button>
-      </form>
-    );
-  }
+				<Switch checked={this.state.isAnimated} onChange={this.handleSwitch('isAnimated')} value="isAnimated" />
+
+				<Switch checked={this.state.isWireframe} onChange={this.handleSwitch('isWireframe')} value="isWireframe" />
+
+				<Switch checked={this.state.hasChildren} onChange={this.handleSwitch('hasChildren')} value="hasChildren" />
+			</form>
+		)
+	}
 }
 
 Form.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+	classes: PropTypes.object.isRequired
+}
 
-export default withStyles(styles)(Form);
+export default withStyles(styles)(Form)
