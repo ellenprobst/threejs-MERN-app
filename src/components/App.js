@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 //import './App.css'
-import Form from './Form/Form.js'
 
 class App extends Component {
 	componentDidMount() {
@@ -15,7 +14,6 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h1>AppTitle</h1>
-				<Form />
 			</div>
 		)
 	}
