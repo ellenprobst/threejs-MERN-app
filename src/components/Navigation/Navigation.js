@@ -1,30 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './navigation.css'
-class Navigation extends Component {
-	render() {
-		return (
-			<div className="nav">
-				<div>Logo</div>
-				<ul className="list">
-					<li>
-						<a className="link" href="#home">
-							Home
-						</a>
-					</li>
-					<li>
-						<a className="link" href="#create">
-							Create
-						</a>
-					</li>
-					<li>
-						<a className="link" href="#myPage">
-							MyPage
-						</a>
-					</li>
-				</ul>
-			</div>
-		)
-	}
+
+import { Link } from 'react-router-dom'
+
+const Navigation = ({ userid = 111 }) => {
+	return (
+		<div className="nav">
+			<div>Logo</div>
+			<ul className="list">
+				<li>
+					<Link to={`/`} className="link">
+						Home
+					</Link>
+				</li>
+				<li>
+					<Link to={`/create`} className="link">
+						Create
+					</Link>
+				</li>
+				<li>
+					<Link to={`/mypage/${userid}`} className="link">
+						MyPage
+					</Link>
+				</li>
+			</ul>
+		</div>
+	)
 }
 
 export default Navigation
