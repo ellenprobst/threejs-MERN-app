@@ -19,7 +19,6 @@ class App extends Component {
 		return (
 			<Router>
 				<React.Fragment>
-					<Navigation />
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" component={Create} />

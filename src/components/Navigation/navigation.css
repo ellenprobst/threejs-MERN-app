@@ -1,7 +1,7 @@
 .nav {
 	display: flex;
 	justify-content: space-between;
-	margin: 15px 35px;
+	margin: 10px 35px;
 }
 
 .list {
@@ -9,11 +9,11 @@
 }
 
 .link {
-	color: black;
+	color: #fff;
 	margin: 0 10px;
 	padding: 10px;
 }
 
 .link:hover {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #fff;
 }
