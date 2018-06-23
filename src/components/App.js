@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import './App.css'
-import Form from './components/Form/Form.js'
+//import './App.css'
+import Form from './Form/Form.js'
 
 class App extends Component {
 	componentDidMount() {

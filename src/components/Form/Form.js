@@ -43,7 +43,6 @@ class Form extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
-		console.log('%c submitted ', 'background: darkcyan; color: #fff; padding: 2px;')
 	}
 
 	render() {
