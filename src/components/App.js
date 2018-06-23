@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import Create from './Create'
+import NotFound from './NotFound'
+import Navigation from './Navigation'
+import Landing from './Landing'
 //import './App.css'
 
 class App extends Component {
@@ -12,9 +17,16 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<h1>AppTitle</h1>
-			</div>
+			<Router>
+				<React.Fragment>
+					<Navigation />
+					<Switch>
+						<Route exact path="/" component={Landing} />
+						<Route path="/create" component={Create} />
+						<Route component={NotFound} />
+					</Switch>
+				</React.Fragment>
+			</Router>
 		)
 	}
 }
