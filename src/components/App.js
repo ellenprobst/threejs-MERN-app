@@ -6,6 +6,7 @@ import Create from './Create'
 import NotFound from './NotFound'
 import Navigation from './Navigation'
 import Landing from './Landing'
+
 //import './App.css'
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div>
+					<Navigation />
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" component={Create} />

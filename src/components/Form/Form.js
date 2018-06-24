@@ -20,7 +20,7 @@ class Form extends Component {
 	state = {
 		title: '',
 		size: 3,
-		color: 3,
+		colour: 3,
 		geometry: '',
 		isAnimated: false,
 		isWireframe: false,
@@ -50,8 +50,28 @@ class Form extends Component {
 		const { size, color } = this.state
 
 		return (
-			<form autoComplete="off" onSubmit={this.handleSubmit}>
-				<div>testing</div>
+			<form autoComplete="off" onSubmit={this.handleSubmit} className="form">
+				<label htmlFor="title">Title:</label>
+				<input name="title" type="text" placeholder="title" onChange={this.handleChange('title')} />
+				<label htmlFor="size">Size:</label>
+				<input name="size" type="range" min="1" max="5" defaultValue="3" onChange={this.handleSelect('size')} />
+				<label htmlFor="colour">Colour:</label>
+				<input name="colour" type="range" min="1" max="5" defaultValue="3" onChange={this.handleSelect('colour')} />
+				<label htmlFor="geometry">sphere:</label>
+				<input name="geometry" type="radio" />
+				<label htmlFor="geometry">cube:</label>
+				<input name="geometry" type="radio" />
+				<label htmlFor="geometry">torus:</label>
+				<input name="geometry" type="radio" />
+				<label htmlFor="geometry">animate:</label>
+				<input name="animate" type="checkbox" />
+				<label htmlFor="wireframe">wireframe:</label>
+				<input name="wireframe" type="checkbox" />
+				<label htmlFor="children">children:</label>
+				<input name="children" type="checkbox" />
+				<button type="submit" className="button">
+					save
+				</button>
 			</form>
 		)
 	}
