@@ -18,13 +18,13 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<React.Fragment>
+				<div>
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" component={Create} />
 						<Route component={NotFound} />
 					</Switch>
-				</React.Fragment>
+				</div>
 			</Router>
 		)
 	}

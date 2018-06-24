@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+//import { withStyles } from '@material-ui/core/styles'
+//import Button from '@material-ui/core/Button'
 
 import Navigation from '../Navigation'
+import Canvas from '../Canvas'
+
 import './landing.css'
 
 const styles = {
@@ -15,18 +17,17 @@ const styles = {
 const Landing = ({ classes }) => {
 	return (
 		<div className="container">
+			<Canvas width={3} height={3} depth={3} />
 			<Navigation />
-			<div className="">
-				<h1 className="header">Welcome</h1>
-				<h2 className="subtitle">Create your own 3D background</h2>
+			<div className="wrapper">
+				<h1 className="header">3D Heroes</h1>
+				<h2 className="subheader">Create your own 3D background</h2>
 				<Link to="/create">
-					<Button type="submit" variant="outlined" size="medium" color="primary" className={classes.button}>
-						Get started
-					</Button>
+					<button className="button">Get started</button>
 				</Link>
 			</div>
 		</div>
 	)
 }
 
-export default withStyles(styles)(Landing)
+export default Landing

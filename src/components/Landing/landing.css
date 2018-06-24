@@ -1,16 +1,29 @@
 .container {
 	min-height: 100vh;
-	padding: 20px;
-	background: #ec008c; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #fc6767, #ec008c); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to bottom,
-		#fc6767,
-		#ec008c
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.wrapper {
+	position: relative;
+	top: 35vh;
+	left: 15vw;
+}
+
+.header {
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.subheader {
+	color: #9fcedb;
+	font-weight: normal;
 }
 
 .button {
 	background: transparent;
+	padding: 10px 20px;
+	border-radius: 3px;
 	border: 1px solid #fff;
+	color: #fff;
+	font-size: 15px;
+	letter-spacing: 1.2px;
 }
