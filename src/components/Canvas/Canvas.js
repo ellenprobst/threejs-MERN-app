@@ -1,20 +1,33 @@
 import React from 'react'
 import React3 from 'react-three-renderer'
 import * as THREE from 'three'
-import ReactDOM from 'react-dom'
 
-const styles = {
-	background: ' #ec008c',
-	background: '-webkit-linear-gradient(to bottom, #fc6767, #ec008c)',
-	background: 'linear-gradient(to bottom, #fc6767, #ec008c)'
-}
+const colors = [
+	['#12c2e9', '#c471ed'],
+	['#00F260', '#0575E6'],
+	['#3494E6', '#EC6EAD'],
+	['#ff6a00', '#ee0979'],
+	['#f7ff00', '#db36a4'],
+	['#8360c3', '#2ebf91']
+]
+
+// const styles = {
+// 	background: '-webkit-linear-gradient(to bottom, #fc6767, #ec008c)',
+// 	background: 'linear-gradient(to bottom, #fc6767, #ec008c)'
+// }
+
 class Canvas extends React.Component {
 	constructor(props, context) {
 		super(props, context)
 
 		// construct the position vector here, because if we use 'new' within render,
 		// React will think that things have changed when they have not.
-		this.cameraPosition = new THREE.Vector3(0, 0, 5)
+		this.cameraPosition = new THREE.Vector3(0, 0, 20)
+		this.directionalLightPositionOne = new THREE.Vector3(-1, -1, 0)
+		this.directionalLightPositionTwo = new THREE.Vector3(1, 1, 0)
+		this.directionalLightPositionFix = new THREE.Vector3(5, 0, -2)
+
+		this.scenePosition = new THREE.Vector3(0, 0, 0)
 
 		this.state = {
 			cubeRotation: new THREE.Euler()
@@ -35,6 +48,12 @@ class Canvas extends React.Component {
 		const width = window.innerWidth // canvas width
 		const height = window.innerHeight // canvas height
 
+		const color = colors[this.props.color]
+
+		const styles = {
+			background: `linear-gradient(to bottom, ${color[0]}, ${color[1]})`
+		}
+
 		return (
 			<React3
 				preserveDrawingBuffer={true}
@@ -53,13 +72,18 @@ class Canvas extends React.Component {
 						name="camera"
 						fov={75}
 						aspect={width / height}
-						near={0.1}
-						far={1000}
+						near={1}
+						far={2000}
+						lookAt={this.scenePosition}
 						position={this.cameraPosition}
 					/>
+					<ambientLight color={'#999999'} />
+					<directionalLight color={color[1]} position={this.directionalLightPositionOne} lookAt={this.scenePosition} />
+					<directionalLight color={color[0]} position={this.directionalLightPositionTwo} lookAt={this.scenePosition} />
+					<directionalLight color={'#FFF'} position={this.directionalLightPositionFix} lookAt={this.scenePosition} />
 					<mesh rotation={this.state.cubeRotation}>
-						<boxGeometry width={this.props.size} height={this.props.size} depth={this.props.size} />
-						<meshPhongMaterial color={this.props.color} wireframe={this.props.isWireframe} />
+						<icosahedronGeometry radius={7} detail={1} />
+						<meshPhongMaterial wireframe={this.props.isWireframe} shading={THREE.FlatShading} />
 					</mesh>
 				</scene>
 			</React3>

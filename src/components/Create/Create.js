@@ -7,7 +7,7 @@ import Canvas from '../Canvas'
 import './create.css'
 
 const Title = styled.h1`
-	font-size: 50px;
+	font-size: 60px;
 	font-weight: normal;
 `
 
@@ -21,7 +21,7 @@ class Create extends Component {
 	state = {
 		title: 'App Title',
 		size: 3,
-		colour: 3,
+		color: 3,
 		geometry: '',
 		isAnimated: false,
 		isWireframe: false,

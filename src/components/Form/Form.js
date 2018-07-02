@@ -24,8 +24,8 @@ class Form extends Component {
 
 				<label htmlFor="size">Size:</label>
 				<input name="size" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
-				<label htmlFor="colour">Colour:</label>
-				<input name="colour" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
+				<label htmlFor="color">Colour:</label>
+				<input name="color" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
 				<label htmlFor="geometry">sphere:</label>
 				<input name="geometry" type="radio" value="sphere" defaultChecked={false} onChange={() => this.handleChange} />
 				<label htmlFor="geometry">cube:</label>
