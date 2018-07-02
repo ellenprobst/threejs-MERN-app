@@ -58,8 +58,8 @@ class Canvas extends React.Component {
 						position={this.cameraPosition}
 					/>
 					<mesh rotation={this.state.cubeRotation}>
-						<boxGeometry width={this.props.width} height={this.props.height} depth={this.props.depth} />
-						<meshBasicMaterial color={this.props.color} wireframe={true} />
+						<boxGeometry width={this.props.size} height={this.props.size} depth={this.props.size} />
+						<meshPhongMaterial color={this.props.color} wireframe={this.props.isWireframe} />
 					</mesh>
 				</scene>
 			</React3>

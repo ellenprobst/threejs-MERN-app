@@ -28,18 +28,14 @@ class Create extends Component {
 		hasChildren: false
 	}
 
-	updateState = (key, value) => {
-		this.setState({ [key]: value })
-	}
+	updateState = (key, value) => this.setState({ [key]: value })
 	render() {
-		const { size, title } = this.state
 		return (
 			<div>
-				<h1>Create</h1>
-				<Canvas width={size} height={size} depth={size} />
-				<Form updateState={this.updateState} default={this.state} />
+				<Canvas {...this.state} />
+				<Form updateState={this.updateState} {...this.state} />
 				<Wrapper>
-					<Title>{title}</Title>
+					<Title>{this.state.title}</Title>
 				</Wrapper>
 			</div>
 		)
