@@ -5,20 +5,18 @@ import './form.css'
 class Form extends Component {
 	handleChange = title => event => this.props.updateState(title, event.target.value)
 	handleSwitch = name => event => this.props.updateState(name, event.target)
-
-	handleSubmit = e => {
-		e.preventDefault()
-	}
+	handleSubmit = e => e.preventDefault()
 
 	render() {
+		const { title, size, colour, geometry, isAnimated, isWireframe, hasChildren } = this.props.default
 		return (
 			<form autoComplete="off" onSubmit={this.handleSubmit} className="form">
 				<label htmlFor="title">Title:</label>
-				<input name="title" type="text" placeholder="title" onChange={this.handleChange('title')} />
+				<input name="title" type="text" placeholder={title} onChange={this.handleChange('title')} />
 				<label htmlFor="size">Size:</label>
-				<input name="size" type="range" min="1" max="5" defaultValue="3" onChange={this.handleChange('size')} />
+				<input name="size" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange('size')} />
 				<label htmlFor="colour">Colour:</label>
-				<input name="colour" type="range" min="1" max="5" defaultValue="3" onChange={this.handleChange('colour')} />
+				<input name="colour" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange('colour')} />
 				<label htmlFor="geometry">sphere:</label>
 				<input
 					name="geometry"
