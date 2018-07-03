@@ -22,7 +22,7 @@ class Create extends Component {
 		title: 'App Title',
 		size: 3,
 		color: 3,
-		geometry: '',
+		geometry: 'cube',
 		isAnimated: false,
 		isWireframe: false,
 		hasChildren: false

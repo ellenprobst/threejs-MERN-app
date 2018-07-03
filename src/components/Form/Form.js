@@ -7,33 +7,69 @@ class Form extends Component {
 		const target = event.target
 		const value = target.type === 'checkbox' ? target.checked : target.value
 		const name = target.name
-
+		console.log('%c changing ', 'background: darkcyan; color: #fff; padding: 2px;', { name }, { value })
 		this.props.updateState(name, value)
 	}
 
 	handleSubmit = e => e.preventDefault()
 
 	render() {
-		const { title, size, isWireframe, hasChildren } = this.props
-		return (
-			<form autoComplete="off" onSubmit={this.handleSubmit} className="form">
-				<label htmlFor="title">
+		const { title, size, isWireframe, hasChildren, geometry } = this.props
+		return <form autoComplete="off" onSubmit={this.handleSubmit} className="form">
+				<label>
 					Title:
 					<input name="title" type="text" placeholder={title} onChange={this.handleChange} />
 				</label>
 
-				<label htmlFor="size">Size:</label>
-				<input name="size" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
-				<label htmlFor="color">Colour:</label>
-				<input name="color" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
-				<label htmlFor="geometry">sphere:</label>
-				<input name="geometry" type="radio" value="sphere" defaultChecked={false} onChange={() => this.handleChange} />
-				<label htmlFor="geometry">cube:</label>
-				<input name="geometry" type="radio" value="cube" onChange={() => this.handleChange} />
-				<label htmlFor="geometry">torus:</label>
-				<input name="geometry" type="radio" value="torus" onChange={() => this.handleChange} />
-				<label htmlFor="animate">animate:</label>
-				<input name="animate" type="checkbox" value="sphere" onChange={() => this.handleChange} />
+				<label>
+					Size:
+					<input name="size" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
+				</label>
+
+				<label>
+					Colour:
+					<input name="color" type="range" min="1" max="5" defaultValue={size} onChange={this.handleChange} />
+				</label>
+				<label>
+					sphere:
+					<input name="geometry" type="radio" value="sphere" checked={geometry === 'sphere'} onChange={this.handleChange} />
+				</label>
+				<label>
+					cube:
+					<input name="geometry" type="radio" value="cube" checked={geometry === 'cube'} onChange={this.handleChange} />
+				</label>
+				<label>
+					torus:
+					<input name="geometry" type="radio" value="torus" checked={geometry === 'torus'} onChange={this.handleChange} />
+				</label>
+				<label>
+					torusKnot:
+					<input name="geometry" type="radio" value="torusKnot" checked={geometry === 'torusKnot'} onChange={this.handleChange} />
+				</label>
+			<label>
+				octa:
+					<input
+					name="geometry"
+					type="radio"
+					value="octa"
+					checked={geometry === 'octa'}
+					onChange={this.handleChange}
+				/>
+			</label>
+			<label>
+				icosa:
+					<input
+					name="geometry"
+					type="radio"
+					value="icosa"
+					checked={geometry === 'icosa'}
+					onChange={this.handleChange}
+				/>
+			</label>
+				<label>
+					animate:
+					<input name="animate" type="checkbox" value="isAnimated" onChange={this.handleChange} />
+				</label>
 				<label>
 					wireframe:
 					<input name="isWireframe" type="checkbox" defaultChecked={isWireframe} onChange={this.handleChange} />
@@ -47,7 +83,6 @@ class Form extends Component {
 					save
 				</button>
 			</form>
-		)
 	}
 }
 

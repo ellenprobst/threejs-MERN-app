@@ -4,11 +4,12 @@ import * as THREE from 'three'
 
 const colors = [
 	['#12c2e9', '#c471ed'],
-	['#00F260', '#0575E6'],
+	['#0575E6', '#00F260'],
 	['#3494E6', '#EC6EAD'],
 	['#ff6a00', '#ee0979'],
-	['#f7ff00', '#db36a4'],
-	['#8360c3', '#2ebf91']
+	['#db36a4', '#f7ff00'],
+	['#8360c3', '#2ebf91'],
+	['#11e8bb', '#8200C9']
 ]
 
 // const styles = {
@@ -22,8 +23,8 @@ class Canvas extends React.Component {
 
 		// construct the position vector here, because if we use 'new' within render,
 		// React will think that things have changed when they have not.
-		this.cameraPosition = new THREE.Vector3(0, 0, 20)
-		this.directionalLightPositionOne = new THREE.Vector3(-1, -1, 0)
+		this.cameraPosition = new THREE.Vector3(0, 0, 10)
+		this.directionalLightPositionOne = new THREE.Vector3(-0.75, -1, 0.5)
 		this.directionalLightPositionTwo = new THREE.Vector3(1, 1, 0)
 		this.directionalLightPositionFix = new THREE.Vector3(5, 0, -2)
 
@@ -44,6 +45,32 @@ class Canvas extends React.Component {
 		}
 	}
 
+	generateMesh = geometry => {
+		let newGeometry = ''
+		switch (geometry) {
+			case 'sphere':
+				newGeometry = <sphereGeometry radius={this.props.size} />
+				break
+			case 'cube':
+				newGeometry = <boxGeometry width={this.props.size} height={this.props.size} depth={this.props.size} />
+				break
+			case 'torus':
+				newGeometry = <torusGeometry radius={this.props.size * 30} />
+				break
+			case 'torusKnot':
+				newGeometry = <torusKnotGeometry radius={this.props.size * 30} />
+				break
+
+			case 'icosa':
+				newGeometry = <icosahedronGeometry radius={this.props.size} detail={1} />
+				break
+			case 'octa':
+				newGeometry = <octahedronGeometry radius={this.props.size} detail={1} />
+				break
+		}
+		return newGeometry
+	}
+
 	render() {
 		const width = window.innerWidth // canvas width
 		const height = window.innerHeight // canvas height
@@ -53,6 +80,9 @@ class Canvas extends React.Component {
 		const styles = {
 			background: `linear-gradient(to bottom, ${color[0]}, ${color[1]})`
 		}
+
+		if (this.props.geometry === null) return
+		const geometry = this.generateMesh(this.props.geometry)
 
 		return (
 			<React3
@@ -82,8 +112,12 @@ class Canvas extends React.Component {
 					<directionalLight color={color[0]} position={this.directionalLightPositionTwo} lookAt={this.scenePosition} />
 					<directionalLight color={'#FFF'} position={this.directionalLightPositionFix} lookAt={this.scenePosition} />
 					<mesh rotation={this.state.cubeRotation}>
-						<icosahedronGeometry radius={7} detail={1} />
-						<meshPhongMaterial wireframe={this.props.isWireframe} shading={THREE.FlatShading} />
+						{geometry}
+						<meshPhongMaterial
+							side={THREE.DoubleSide}
+							wireframe={this.props.isWireframe}
+							shading={this.props.isWireframe ? '' : THREE.FlatShading}
+						/>
 					</mesh>
 				</scene>
 			</React3>

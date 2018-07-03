@@ -16,7 +16,7 @@ const styles = {
 const Landing = ({ classes }) => {
 	return (
 		<div>
-			<Canvas width={3} height={3} depth={3} />
+			<Canvas color={3} size={5} depth={5} geometry="cube" />
 			<div className="wrapper">
 				<h1 className="header">3D Heroes</h1>
 				<h2 className="subheader">Create your own 3D background</h2>
