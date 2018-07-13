@@ -20,7 +20,7 @@ const Code = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
 
 	return (
 		<Wrapper>
-			<button onClick={() => close()}>close</button>
+			<button onClick={close}>close</button>
 			<Highlight language="javascript">
 				{`
 var scene = new THREE.Scene();

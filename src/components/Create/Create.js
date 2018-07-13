@@ -36,17 +36,28 @@ class Create extends Component {
 			isAnimated: false,
 			isWireframe: false,
 			hasChildren: false,
-			image: 'url',
-			user: '5b341f87211b090dd4e1e5d8'
+			image: 'url'
 		},
 		showCode: false
 	}
 
-	handleSubmit = e => {
-		e.preventDefault()
+	componentDidMount = () => {
+		console.log('%c mounting ', 'background: darkcyan; color: #fff; padding: 2px;')
+	}
 
+	addScreenshot = () => {
+		console.log('%c setting state ', 'background: darkcyan; color: #fff; padding: 2px;')
+		const element = document.getElementsByTagName('canvas')
+		const screenshot = element[0].toDataURL()
+
+		this.setState(prevState => ({ inputs: { ...prevState.inputs, image: screenshot } }))
+	}
+
+	postRequest = () => {
+		console.log('%c running get ', 'background: darkcyan; color: #fff; padding: 2px;')
+		const body = { ...this.state.inputs, user: this.props.user }
 		axios
-			.post('/items', this.state.inputs, {
+			.post('/items', body, {
 				headers: {
 					'content-type': 'application/json'
 				}
@@ -57,6 +68,13 @@ class Create extends Component {
 			.catch(function(error) {
 				console.log(error)
 			})
+	}
+
+	handleSubmit = async e => {
+		e.preventDefault()
+
+		await this.addScreenshot()
+		this.postRequest()
 	}
 
 	showCode = () => {

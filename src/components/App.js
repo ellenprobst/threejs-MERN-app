@@ -6,10 +6,14 @@ import Create from './Create'
 import NotFound from './NotFound'
 import Navigation from './Navigation'
 import Landing from './Landing'
+import MyPage from './MyPage'
 
 //import './App.css'
 
 class App extends Component {
+	state = {
+		user: '5b341f87211b090dd4e1e5d8'
+	}
 	componentDidMount() {
 		axios.get('/healthcheck').then(res => {
 			console.log(res.data)
@@ -23,7 +27,8 @@ class App extends Component {
 					<Navigation />
 					<Switch>
 						<Route exact path="/" component={Landing} />
-						<Route path="/create" component={Create} />
+						<Route path="/create" render={() => <Create user={this.state.user} />} />
+						<Route path="/myPage" render={() => <MyPage user={this.state.user} />} />
 						<Route component={NotFound} />
 					</Switch>
 				</div>
