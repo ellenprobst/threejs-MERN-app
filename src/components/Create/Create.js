@@ -3,12 +3,21 @@ import styled from 'styled-components'
 import axios from 'axios'
 import Form from '../Form'
 import Canvas from '../Canvas'
+import Code from '../Code'
 
 import './create.css'
 
 const Title = styled.h1`
 	font-size: 60px;
 	font-weight: normal;
+`
+const Button = styled.button`
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	padding: 25px;
+	background: #333;
+	color: #fff;
 `
 
 const Wrapper = styled.div`
@@ -19,25 +28,25 @@ const Wrapper = styled.div`
 
 class Create extends Component {
 	state = {
-		title: 'App Title',
-		size: 3,
-		color: 3,
-		geometry: 'cube',
-		isAnimated: false,
-		isWireframe: false,
-		hasChildren: false,
-		image: 'url',
-		user: '5b341f87211b090dd4e1e5d8'
+		inputs: {
+			title: 'App Title',
+			size: 3,
+			color: 3,
+			geometry: 'cube',
+			isAnimated: false,
+			isWireframe: false,
+			hasChildren: false,
+			image: 'url',
+			user: '5b341f87211b090dd4e1e5d8'
+		},
+		showCode: false
 	}
 
 	handleSubmit = e => {
 		e.preventDefault()
-		// axios.get('/items').then(res => {
-		// 	console.log(res.data)
-		// })
 
 		axios
-			.post('/items', this.state, {
+			.post('/items', this.state.inputs, {
 				headers: {
 					'content-type': 'application/json'
 				}
@@ -50,15 +59,32 @@ class Create extends Component {
 			})
 	}
 
-	updateState = (key, value) => this.setState({ [key]: value })
+	showCode = () => {
+		this.setState(prevState => ({
+			showCode: !prevState.showCode
+		}))
+	}
+
+	updateState = (key, value) =>
+		this.setState(prevState => ({
+			inputs: {
+				...prevState.inputs,
+				[key]: value
+			}
+		}))
+
 	render() {
+		const { inputs, showCode } = this.state
+
 		return (
 			<div>
-				<Canvas {...this.state} />
-				<Form updateState={this.updateState} handleSubmit={this.handleSubmit} {...this.state} />
+				<Canvas {...inputs} />
+				<Form updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
 				<Wrapper>
-					<Title>{this.state.title}</Title>
+					<Title>{inputs.title}</Title>
 				</Wrapper>
+				{showCode && <Code />}
+				<Button onClick={this.showCode}>show code</Button>
 			</div>
 		)
 	}

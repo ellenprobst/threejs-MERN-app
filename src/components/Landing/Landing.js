@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-//import { withStyles } from '@material-ui/core/styles'
-//import Button from '@material-ui/core/Button'
 
 import Canvas from '../Canvas'
 
 import './landing.css'
 
-const styles = {
-	button: {
-		borderColor: '#FFF'
-	}
-}
-
-const Landing = ({ classes }) => {
+const Landing = () => {
 	return (
 		<div>
 			<Canvas color={3} size={5} depth={5} geometry="cube" />
