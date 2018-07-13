@@ -9,7 +9,10 @@ const colors = [
 	['#ff6a00', '#ee0979'],
 	['#db36a4', '#f7ff00'],
 	['#8360c3', '#2ebf91'],
-	['#11e8bb', '#8200C9']
+	['#11e8bb', '#8200C9'],
+	['#eaafc8', '#654ea3'],
+
+	['#141e30', '#243b55']
 ]
 
 // const styles = {
@@ -26,7 +29,7 @@ class Canvas extends React.Component {
 		this.cameraPosition = new THREE.Vector3(0, 0, 10)
 		this.directionalLightPositionOne = new THREE.Vector3(-0.75, -1, 0.5)
 		this.directionalLightPositionTwo = new THREE.Vector3(1, 1, 0)
-		this.directionalLightPositionFix = new THREE.Vector3(5, 0, -2)
+		this.directionalLightPositionFix = new THREE.Vector3(3, 0, -2)
 
 		this.scenePosition = new THREE.Vector3(0, 0, 0)
 
@@ -110,7 +113,7 @@ class Canvas extends React.Component {
 					<ambientLight color={'#999999'} />
 					<directionalLight color={color[1]} position={this.directionalLightPositionOne} lookAt={this.scenePosition} />
 					<directionalLight color={color[0]} position={this.directionalLightPositionTwo} lookAt={this.scenePosition} />
-					<directionalLight color={'#FFF'} position={this.directionalLightPositionFix} lookAt={this.scenePosition} />
+					<directionalLight color={'#fc6767'} position={this.directionalLightPositionFix} lookAt={this.scenePosition} />
 					<mesh rotation={this.state.cubeRotation}>
 						{geometry}
 						<meshPhongMaterial

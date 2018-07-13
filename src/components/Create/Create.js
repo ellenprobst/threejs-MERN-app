@@ -30,8 +30,8 @@ class Create extends Component {
 	state = {
 		inputs: {
 			title: 'App Title',
-			size: 3,
-			color: 3,
+			size: 4,
+			color: 7,
 			geometry: 'cube',
 			isAnimated: false,
 			isWireframe: false,
@@ -83,7 +83,7 @@ class Create extends Component {
 				<Wrapper>
 					<Title>{inputs.title}</Title>
 				</Wrapper>
-				{showCode && <Code />}
+				{showCode && <Code close={this.showCode} />}
 				<Button onClick={this.showCode}>show code</Button>
 			</div>
 		)

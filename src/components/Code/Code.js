@@ -3,7 +3,7 @@ import Highlight from 'react-highlight'
 import styled from 'styled-components'
 
 import '../../../node_modules/highlight.js/styles/ocean.css'
-const Code = ({ color, size, geometrye, isAnimated, isWireframe }) => {
+const Code = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
 	// getGeometry = () => {
 	// 	return geometry
 	// }
@@ -20,7 +20,7 @@ const Code = ({ color, size, geometrye, isAnimated, isWireframe }) => {
 
 	return (
 		<Wrapper>
-			<button>close</button>
+			<button onClick={() => close()}>close</button>
 			<Highlight language="javascript">
 				{`
 var scene = new THREE.Scene();
