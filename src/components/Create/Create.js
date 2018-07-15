@@ -80,11 +80,9 @@ class Create extends Component {
 			})
 	}
 
-	handleSubmit = async e => {
+	handleSubmit = e => {
 		e.preventDefault()
-
-		await this.setState(prevState => ({ inputs: { ...prevState.inputs, image: this.getImage() } }))
-		await this.postRequest()
+		this.setState(prevState => ({ inputs: { ...prevState.inputs, image: this.getImage() } }), this.postRequest())
 	}
 
 	showCode = () => {

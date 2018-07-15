@@ -15,20 +15,27 @@ class MyPage extends Component {
 		items: []
 	}
 
-	getItems = async () => {
-		const res = await axios.get(`/items?user_id=${this.props.user}`)
-		return res.data
-	}
-
 	async componentDidMount() {
-		console.log('%c ComponentDidMount(MyPage) ', 'background: darkcyan; color: #fff; padding: 2px;')
-		const items = await this.getItems()
-		this.setState({ items })
+		this.refresh()
 	}
 
-	deleteItem = async (id) => {
-		await axios.delete(`/item_id=${id}`);
-		
+	refresh = async () => {
+		try {
+			const res = await axios.get(`/items?user_id=${this.props.user}`)
+			const items = res.data
+			this.setState({ items })
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	removeItem = async id => {
+		try {
+			await axios.delete(`/items/${id}`)
+			this.refresh()
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
 	render() {
@@ -36,7 +43,14 @@ class MyPage extends Component {
 			<div>
 				<Grid>
 					{this.state.items.map(item => (
-						<Item key={item._id} title={item.title} image={item.image} color={item.color} />
+						<Item
+							key={item._id}
+							id={item._id}
+							title={item.title}
+							image={item.image}
+							color={item.color}
+							removeItem={this.removeItem}
+						/>
 					))}
 				</Grid>
 			</div>

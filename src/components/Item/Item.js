@@ -40,14 +40,14 @@ const Button = styled.button`
 	font-weight: bold;
 `
 
-const Item = ({ title, image, color, deleteItem }) => {
+const Item = ({ title, image, color, removeItem, id }) => {
 	return (
 		<Container>
 			<Title>{title}</Title>
 			<Wrapper color={color}>
 				<Image src={image} />
 			</Wrapper>
-			<Button onClick={this.deleteItem}>x</Button>
+			<Button onClick={() => removeItem(id)}>x</Button>
 		</Container>
 	)
 }
