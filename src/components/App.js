@@ -24,7 +24,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div>
-					<Navigation />
+					<Navigation user={this.state.user} />
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" render={() => <Create user={this.state.user} />} />

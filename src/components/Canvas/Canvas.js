@@ -2,19 +2,6 @@ import React from 'react'
 import React3 from 'react-three-renderer'
 import * as THREE from 'three'
 
-const colors = [
-	['#12c2e9', '#c471ed'],
-	['#0575E6', '#00F260'],
-	['#3494E6', '#EC6EAD'],
-	['#ff6a00', '#ee0979'],
-	['#db36a4', '#f7ff00'],
-	['#8360c3', '#2ebf91'],
-	['#11e8bb', '#8200C9'],
-	['#eaafc8', '#654ea3'],
-
-	['#141e30', '#243b55']
-]
-
 // const styles = {
 // 	background: '-webkit-linear-gradient(to bottom, #fc6767, #ec008c)',
 // 	background: 'linear-gradient(to bottom, #fc6767, #ec008c)'
@@ -78,7 +65,7 @@ class Canvas extends React.Component {
 		const width = window.innerWidth // canvas width
 		const height = window.innerHeight // canvas height
 
-		const color = colors[this.props.color]
+		const color = this.props.color
 
 		const styles = {
 			background: `linear-gradient(to bottom, ${color[0]}, ${color[1]})`

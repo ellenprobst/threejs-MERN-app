@@ -26,17 +26,29 @@ const Wrapper = styled.div`
 	left: 15vw;
 `
 
+const colors = [
+	['#12c2e9', '#c471ed'],
+	['#0575E6', '#00F260'],
+	['#3494E6', '#EC6EAD'],
+	['#ff6a00', '#ee0979'],
+	['#db36a4', '#f7ff00'],
+	['#8360c3', '#2ebf91'],
+	['#11e8bb', '#8200C9'],
+	['#eaafc8', '#654ea3'],
+	['#141e30', '#243b55']
+]
+
 class Create extends Component {
 	state = {
 		inputs: {
 			title: 'App Title',
 			size: 4,
-			color: 7,
+			color: ['#141e30', '#243b55'],
 			geometry: 'cube',
 			isAnimated: false,
 			isWireframe: false,
 			hasChildren: false,
-			image: 'url'
+			image: ''
 		},
 		showCode: false
 	}
@@ -45,16 +57,14 @@ class Create extends Component {
 		console.log('%c mounting ', 'background: darkcyan; color: #fff; padding: 2px;')
 	}
 
-	addScreenshot = () => {
-		console.log('%c setting state ', 'background: darkcyan; color: #fff; padding: 2px;')
+	getImage = () => {
 		const element = document.getElementsByTagName('canvas')
-		const screenshot = element[0].toDataURL()
+		const image = element[0].toDataURL()
 
-		this.setState(prevState => ({ inputs: { ...prevState.inputs, image: screenshot } }))
+		return image
 	}
 
 	postRequest = () => {
-		console.log('%c running get ', 'background: darkcyan; color: #fff; padding: 2px;')
 		const body = { ...this.state.inputs, user: this.props.user }
 		axios
 			.post('/items', body, {
@@ -73,8 +83,8 @@ class Create extends Component {
 	handleSubmit = async e => {
 		e.preventDefault()
 
-		await this.addScreenshot()
-		this.postRequest()
+		await this.setState(prevState => ({ inputs: { ...prevState.inputs, image: this.getImage() } }))
+		await this.postRequest()
 	}
 
 	showCode = () => {
@@ -83,13 +93,14 @@ class Create extends Component {
 		}))
 	}
 
-	updateState = (key, value) =>
+	updateState = (key, value) => {
 		this.setState(prevState => ({
 			inputs: {
 				...prevState.inputs,
-				[key]: value
+				[key]: key === 'color' ? colors[value] : value
 			}
 		}))
+	}
 
 	render() {
 		const { inputs, showCode } = this.state

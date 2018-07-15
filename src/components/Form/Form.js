@@ -7,7 +7,6 @@ class Form extends Component {
 		const target = event.target
 		const value = target.type === 'checkbox' ? target.checked : target.value
 		const name = target.name
-		console.log('%c changing ', 'background: darkcyan; color: #fff; padding: 2px;', { name }, { value })
 		this.props.updateState(name, value)
 	}
 

@@ -3,7 +3,7 @@ import './navigation.css'
 
 import { Link } from 'react-router-dom'
 
-const Navigation = ({ userid = 111 }) => {
+const Navigation = ({ user }) => {
 	return (
 		<div className="nav">
 			<div>Logo</div>
@@ -19,7 +19,7 @@ const Navigation = ({ userid = 111 }) => {
 					</Link>
 				</li>
 				<li>
-					<Link to={`/mypage/${userid}`} className="link">
+					<Link to={`/mypage/${user}`} className="link">
 						MyPage
 					</Link>
 				</li>
