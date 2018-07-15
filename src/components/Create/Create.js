@@ -64,8 +64,9 @@ class Create extends Component {
 		return image
 	}
 
-	postRequest = () => {
-		const body = { ...this.state.inputs, user: this.props.user }
+	postRequest = inputs => {
+		const body = { ...inputs }
+		console.log(body)
 		axios
 			.post('/items', body, {
 				headers: {
@@ -82,7 +83,14 @@ class Create extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
-		this.setState(prevState => ({ inputs: { ...prevState.inputs, image: this.getImage() } }), this.postRequest())
+		const inputs = {
+			...this.state.inputs,
+			image: this.getImage(),
+			user: this.props.user
+		}
+
+		this.postRequest(inputs)
+		this.setState({ inputs })
 	}
 
 	showCode = () => {
