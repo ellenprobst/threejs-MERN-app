@@ -25,6 +25,7 @@ const Wrapper = styled.div`
 const Image = styled.img`
 	display: block;
 	max-width: 100%;
+	object-fit: fill;
 `
 
 const Button = styled.button`

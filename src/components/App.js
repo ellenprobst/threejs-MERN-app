@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import { getToken } from '../services/tokenService'
 import Create from './Create'
 import NotFound from './NotFound'
 import Navigation from './Navigation'
@@ -12,12 +12,29 @@ import MyPage from './MyPage'
 
 class App extends Component {
 	state = {
-		user: '5b341f87211b090dd4e1e5d8'
+		user: null
 	}
+
 	componentDidMount() {
-		axios.get('/healthcheck').then(res => {
-			console.log(res.data)
-		})
+		this.getCurrentUser()
+	}
+
+	getCurrentUser = async () => {
+		const token = getToken()
+		if (token) {
+			try {
+				const res = await axios.get('/users/current', {
+					headers: {
+						Authorization: `Bearer ${token}`
+					}
+				})
+				const user = res.data
+
+				this.setState({ user })
+			} catch (error) {
+				console.log(error)
+			}
+		}
 	}
 
 	render() {
