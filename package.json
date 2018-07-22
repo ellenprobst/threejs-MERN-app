@@ -34,6 +34,7 @@
 		"heroku-postbuild": "cd src && npm install --only=dev && npm install && npm run build"
 	},
 	"devDependencies": {
-		"concurrently": "^3.5.1"
+		"concurrently": "^3.5.1",
+		"nodemon": "^1.18.3"
 	}
 }
