@@ -28,7 +28,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"server": "nodemon lib/server.js --ignore src/",
+		"server": "node ./lib/server.js",
 		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"seeds": "node lib/seeds/index.js",
 		"heroku-postbuild": "cd src && npm install --only=dev && npm install && npm run build"
