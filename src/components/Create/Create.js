@@ -6,6 +6,7 @@ import Canvas from '../Canvas'
 import Code from '../Code'
 
 import './create.css'
+import { getToken } from '../../services/tokenService'
 
 const Title = styled.h1`
 	font-size: 60px;
@@ -64,29 +65,25 @@ class Create extends Component {
 		return image
 	}
 
-	postRequest = inputs => {
+	postRequest = async inputs => {
 		const body = { ...inputs }
-		console.log(body)
-		axios
-			.post('/items', body, {
+		const token = getToken()
+		try {
+			await axios.post('/items', body, {
 				headers: {
-					'content-type': 'application/json'
+					Authorization: `Bearer ${token}`
 				}
 			})
-			.then(function(response) {
-				console.log(response)
-			})
-			.catch(function(error) {
-				console.log(error)
-			})
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
 	handleSubmit = e => {
 		e.preventDefault()
 		const inputs = {
 			...this.state.inputs,
-			image: this.getImage(),
-			user: this.props.user
+			image: this.getImage()
 		}
 
 		this.postRequest(inputs)

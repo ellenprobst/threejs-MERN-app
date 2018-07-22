@@ -3,6 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 import Item from '../Item'
+import { getToken } from '../../services/tokenService'
 
 const Grid = styled.div`
 	display: grid;
@@ -20,8 +21,13 @@ class MyPage extends Component {
 	}
 
 	refresh = async () => {
+		const token = getToken()
 		try {
-			const res = await axios.get(`/items?user_id=${this.props.user}`)
+			const res = await axios.get(`/items?user_id=${this.props.user}`, {
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			})
 			const items = res.data
 			this.setState({ items })
 		} catch (e) {
