@@ -19,10 +19,7 @@ class App extends Component {
 		this.getCurrentUser()
 	}
 
-	setUser = user => {
-		console.log('user setting')
-		this.setState({ user })
-	}
+	setUser = user => this.setState({ user })
 
 	getCurrentUser = async () => {
 		const token = getToken()
@@ -43,7 +40,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log('app render')
 		return (
 			<Router>
 				<div>

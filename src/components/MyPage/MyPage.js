@@ -17,6 +17,10 @@ class MyPage extends Component {
 		items: []
 	}
 
+	async componentDidMount() {
+		this.refresh()
+	}
+
 	async componentDidUpdate(prevProps) {
 		if (this.props.user !== prevProps.user) {
 			this.refresh()
@@ -48,7 +52,6 @@ class MyPage extends Component {
 	}
 
 	render() {
-		console.log('render')
 		return (
 			<div>
 				<Grid>
