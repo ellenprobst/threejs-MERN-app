@@ -19,7 +19,10 @@ class App extends Component {
 		this.getCurrentUser()
 	}
 
-	setUser = user => this.setState({ user })
+	setUser = user => {
+		console.log('user setting')
+		this.setState({ user })
+	}
 
 	getCurrentUser = async () => {
 		const token = getToken()
@@ -40,6 +43,7 @@ class App extends Component {
 	}
 
 	render() {
+		console.log('app render')
 		return (
 			<Router>
 				<div>
@@ -47,7 +51,7 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" render={() => <Create user={this.state.user} setUser={this.setUser} />} />
-						<Route path="/myPage" render={() => <MyPage user={this.state.user} />} />
+						<Route path="/myPage" render={() => <MyPage user={this.state.user} setUser={this.setUser} />} />
 						<Route component={NotFound} />
 					</Switch>
 				</div>

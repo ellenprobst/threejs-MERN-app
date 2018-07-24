@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import Login from '../Login'
 
 import Item from '../Item'
 import { getToken } from '../../services/tokenService'
@@ -16,8 +17,10 @@ class MyPage extends Component {
 		items: []
 	}
 
-	async componentDidMount() {
-		this.refresh()
+	async componentDidUpdate(prevProps) {
+		if (this.props.user !== prevProps.user) {
+			this.refresh()
+		}
 	}
 
 	refresh = async () => {
@@ -45,6 +48,7 @@ class MyPage extends Component {
 	}
 
 	render() {
+		console.log('render')
 		return (
 			<div>
 				<Grid>
@@ -59,6 +63,8 @@ class MyPage extends Component {
 						/>
 					))}
 				</Grid>
+
+				{!this.props.user && <Login setUser={this.props.setUser} />}
 			</div>
 		)
 	}

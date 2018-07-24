@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Canvas from '../Canvas'
-import Login from '../Login'
-import Signup from '../Signup'
 
 import './landing.css'
 
@@ -18,8 +16,6 @@ const Landing = () => {
 					<button className="button">Get started</button>
 				</Link>
 			</div>
-			<Login />
-			<Signup />
 		</div>
 	)
 }
