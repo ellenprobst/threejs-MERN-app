@@ -19,6 +19,8 @@ class App extends Component {
 		this.getCurrentUser()
 	}
 
+	setUser = user => this.setState({ user })
+
 	getCurrentUser = async () => {
 		const token = getToken()
 		if (token) {
@@ -44,7 +46,7 @@ class App extends Component {
 					<Navigation user={this.state.user} />
 					<Switch>
 						<Route exact path="/" component={Landing} />
-						<Route path="/create" render={() => <Create user={this.state.user} />} />
+						<Route path="/create" render={() => <Create user={this.state.user} setUser={this.setUser} />} />
 						<Route path="/myPage" render={() => <MyPage user={this.state.user} />} />
 						<Route component={NotFound} />
 					</Switch>

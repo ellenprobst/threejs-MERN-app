@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import axios from 'axios'
 
-//import { setToken } from '../../services/tokenService'
+import { setToken } from '../../services/tokenService'
 
 class Signup extends Component {
 	state = {}
@@ -16,6 +16,10 @@ class Signup extends Component {
 
 		try {
 			const res = await axios.post('/auth/signup', { email, password })
+			const { token, user } = res.data.payload
+
+			setToken(token)
+			this.props.setUser(user)
 			console.log('success', res)
 		} catch (e) {
 			console.log(e)

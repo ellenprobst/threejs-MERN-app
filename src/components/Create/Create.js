@@ -4,9 +4,13 @@ import axios from 'axios'
 import Form from '../Form'
 import Canvas from '../Canvas'
 import Code from '../Code'
-
+import Login from '../Login'
 import './create.css'
 import { getToken } from '../../services/tokenService'
+
+const Container = styled.div`
+	min-height: calc(100vh - 58px);
+`
 
 const Title = styled.h1`
 	font-size: 60px;
@@ -48,14 +52,10 @@ class Create extends Component {
 			geometry: 'cube',
 			isAnimated: false,
 			isWireframe: false,
-			hasChildren: false,
-			image: ''
+			hasChildren: false
 		},
-		showCode: false
-	}
-
-	componentDidMount = () => {
-		console.log('%c mounting ', 'background: darkcyan; color: #fff; padding: 2px;')
+		showCode: false,
+		showLogin: false
 	}
 
 	getImage = () => {
@@ -86,8 +86,11 @@ class Create extends Component {
 			image: this.getImage()
 		}
 
-		this.postRequest(inputs)
-		this.setState({ inputs })
+		if (this.props.user) {
+			this.postRequest(inputs)
+		} else {
+			this.setState({ showLogin: true })
+		}
 	}
 
 	showCode = () => {
@@ -105,11 +108,15 @@ class Create extends Component {
 		}))
 	}
 
+	hideLogin = () => {
+		this.setState({ showLogin: false })
+	}
+
 	render() {
-		const { inputs, showCode } = this.state
+		const { inputs, showCode, showLogin } = this.state
 
 		return (
-			<div>
+			<Container>
 				<Canvas {...inputs} />
 				<Form updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
 				<Wrapper>
@@ -117,7 +124,9 @@ class Create extends Component {
 				</Wrapper>
 				{showCode && <Code close={this.showCode} />}
 				<Button onClick={this.showCode}>show code</Button>
-			</div>
+
+				{showLogin && !this.props.user && <Login setUser={this.props.setUser} hideLogin={this.hideLogin} />}
+			</Container>
 		)
 	}
 }
