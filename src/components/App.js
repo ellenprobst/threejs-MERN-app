@@ -18,7 +18,10 @@ class App extends Component {
 		this.getCurrentUser()
 	}
 
-	setUser = user => this.setState({ user })
+	setUser = user => {
+		console.log('calling user', user)
+		this.setState({ user })
+	}
 
 	getCurrentUser = async () => {
 		const token = getToken()
