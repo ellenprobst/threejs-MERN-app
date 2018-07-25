@@ -7,8 +7,7 @@ import NotFound from './NotFound'
 import Navigation from './Navigation'
 import Landing from './Landing'
 import MyPage from './MyPage'
-
-//import './App.css'
+import ItemPage from './ItemPage'
 
 class App extends Component {
 	state = {
@@ -47,7 +46,8 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/create" render={() => <Create user={this.state.user} setUser={this.setUser} />} />
-						<Route path="/myPage" render={() => <MyPage user={this.state.user} setUser={this.setUser} />} />
+						<Route exact path="/myPage" render={() => <MyPage user={this.state.user} setUser={this.setUser} />} />
+						<Route path="/myPage/:item_id" component={ItemPage} />
 						<Route component={NotFound} />
 					</Switch>
 				</div>

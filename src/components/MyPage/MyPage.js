@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Login from '../Login'
+import { Link } from 'react-router-dom'
 
 import Item from '../Item'
 import { getToken } from '../../services/tokenService'
@@ -56,14 +57,15 @@ class MyPage extends Component {
 			<div>
 				<Grid>
 					{this.state.items.map(item => (
-						<Item
-							key={item._id}
-							id={item._id}
-							title={item.title}
-							image={item.image}
-							color={item.color}
-							removeItem={this.removeItem}
-						/>
+						<Link to={`/myPage/${item._id}`} key={item._id}>
+							<Item
+								id={item._id}
+								title={item.title}
+								image={item.image}
+								color={item.color}
+								removeItem={this.removeItem}
+							/>
+						</Link>
 					))}
 				</Grid>
 

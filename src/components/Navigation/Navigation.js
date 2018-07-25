@@ -19,7 +19,7 @@ const Navigation = ({ user }) => {
 					</Link>
 				</li>
 				<li>
-					<Link to={`/mypage/${user}`} className="link">
+					<Link to={`/mypage`} className="link">
 						MyPage
 					</Link>
 				</li>
