@@ -49,8 +49,13 @@ class MyPage extends Component {
 	}
 
 	removeItem = async id => {
+		const token = getToken()
 		try {
-			await axios.delete(`/items/${id}`)
+			await axios.delete(`/items/${id}`, {
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			})
 			this.refresh()
 		} catch (e) {
 			console.log(e)
