@@ -17,7 +17,7 @@ class Login extends Component {
 
 	handleSubmit = async e => {
 		e.preventDefault()
-		console.log('shouldnt do this11')
+
 		const { email, password, type } = this.state
 
 		const route = type === 'login' ? 'login' : 'signup'

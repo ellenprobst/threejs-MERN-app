@@ -29,9 +29,14 @@ class MyPage extends Component {
 	}
 
 	refresh = async () => {
+		if (!this.props.user) {
+			return
+		}
 		const token = getToken()
+		const { user_id } = this.props.user
+
 		try {
-			const res = await axios.get(`/items?user_id=${this.props.user}`, {
+			const res = await axios.get(`/items?user_id=${user_id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
