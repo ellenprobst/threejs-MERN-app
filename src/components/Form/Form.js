@@ -12,11 +12,12 @@ class Form extends Component {
 
 	render() {
 		const { title, size, isWireframe, hasChildren, geometry, handleSubmit, color, isAnimated } = this.props
+
 		return (
 			<form autoComplete="off" onSubmit={handleSubmit} className="form">
 				<label>
 					Title:
-					<input name="title" type="text" placeholder={title} onChange={this.handleChange} />
+					<input name="title" type="text" value={title} onChange={this.handleChange} />
 				</label>
 
 				<label>
@@ -26,7 +27,7 @@ class Form extends Component {
 
 				<label>
 					Colour:
-					<input name="color" type="range" min="0" max="8" value={color} onChange={this.handleChange} />
+					<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
 				</label>
 				<label>
 					sphere:

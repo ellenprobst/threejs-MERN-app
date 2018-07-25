@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom'
 const Container = styled.div`
 	position: relative;
 `
@@ -46,9 +46,11 @@ const Item = ({ title, image, color, removeItem, id }) => {
 		<Container>
 			<Title>{title}</Title>
 			<Wrapper color={color}>
-				<Image src={image} />
+				<Link to={`/myPage/${id}`} key={id}>
+					<Image src={image} />
+				</Link>
 			</Wrapper>
-			<Button onClick={() => removeItem(id)}>x</Button>
+			<Button onClick={e => removeItem(e, id)}>x</Button>
 		</Container>
 	)
 }

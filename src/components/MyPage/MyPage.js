@@ -48,7 +48,9 @@ class MyPage extends Component {
 		}
 	}
 
-	removeItem = async id => {
+	removeItem = async (e, id) => {
+		console.log(e)
+		e.stopPropagation()
 		const token = getToken()
 		try {
 			await axios.delete(`/items/${id}`, {
@@ -67,15 +69,14 @@ class MyPage extends Component {
 			<div>
 				<Grid>
 					{this.state.items.map(item => (
-						<Link to={`/myPage/${item._id}`} key={item._id}>
-							<Item
-								id={item._id}
-								title={item.title}
-								image={item.image}
-								color={item.color}
-								removeItem={this.removeItem}
-							/>
-						</Link>
+						<Item
+							key={item._id}
+							id={item._id}
+							title={item.title}
+							image={item.image}
+							color={item.color}
+							removeItem={this.removeItem}
+						/>
 					))}
 				</Grid>
 
