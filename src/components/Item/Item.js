@@ -50,7 +50,7 @@ const Item = ({ title, image, color, removeItem, id }) => {
 					<Image src={image} />
 				</Link>
 			</Wrapper>
-			<Button onClick={e => removeItem(e, id)}>x</Button>
+			<Button onClick={() => removeItem(id)}>x</Button>
 		</Container>
 	)
 }

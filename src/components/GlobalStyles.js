@@ -30,7 +30,7 @@ export const Input = styled.input`
 	padding: 10px;
 	margin-bottom: 15px;
 	color: #fff;
-	font-size: 16px;
+	font-size: 18px;
 	background: transparent;
 	border: none;
 	border-bottom: 1px solid #19293d;
@@ -70,10 +70,11 @@ export const Button = styled.button`
 
 export const Round = styled.button`
 	outline: none;
+	margin: 10px;
 	border: none;
 	background: transparent;
 	color: #fff;
-	background: #cc5a71;
+	background: #060a12;
 	width: ${props => (props.small ? '24px' : '56px')};
 	height: ${props => (props.small ? '24px' : '56px')};
 	padding: 0;
@@ -83,7 +84,8 @@ export const Round = styled.button`
 	border-radius: 50%;
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	&:hover {
-		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+		background: #233b55;
+		box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
 	}
 `
 

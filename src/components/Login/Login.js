@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 import axios from 'axios'
-import { Container, SubHeader, SelectionGroup, Selection, Form } from './styles'
+import { Container, SubHeader, InputField, SelectionGroup, Selection, Form, Wrapper } from './styles'
 import { Button, Input, FlexContainer } from '../GlobalStyles'
-
+import Person from '@material-ui/icons/Person'
 import { setToken } from '../../services/tokenService'
 
 class Login extends Component {
@@ -45,32 +45,36 @@ class Login extends Component {
 		const { type } = this.state
 
 		return (
-			<Container>
-				<SelectionGroup>
-					<Selection active={type === 'login'} onClick={() => this.changeForm('login')}>
-						Login
-					</Selection>
+			<Wrapper>
+				<Container>
+					<SelectionGroup>
+						<Selection active={type === 'login'} onClick={() => this.changeForm('login')}>
+							Login
+						</Selection>
 
-					<Selection active={type === 'sign up'} onClick={() => this.changeForm('sign up')}>
-						Sign up
-					</Selection>
-				</SelectionGroup>
+						<Selection active={type === 'sign up'} onClick={() => this.changeForm('sign up')}>
+							Sign up
+						</Selection>
+					</SelectionGroup>
 
-				<Form onSubmit={this.handleSubmit}>
-					<SubHeader>You'll need to login to continue</SubHeader>
+					<Form onSubmit={this.handleSubmit}>
+						<SubHeader>You'll need to login to continue</SubHeader>
 
-					<Input name="email" type="email" placeholder="email" onChange={this.handleChange} />
+						<InputField>
+							<Person />
+							<Input name="email" type="email" placeholder="email" onChange={this.handleChange} />
+						</InputField>
+						<Input name="password" type="password" placeholder="password" onChange={this.handleChange} />
+						<FlexContainer>
+							<Button type="submit">{type}</Button>
 
-					<Input name="password" type="password" placeholder="password" onChange={this.handleChange} />
-					<FlexContainer>
-						<Button type="submit">{type}</Button>
-
-						<Button small onClick={this.props.hideLogin}>
-							cancel
-						</Button>
-					</FlexContainer>
-				</Form>
-			</Container>
+							<Button small onClick={this.props.hideLogin}>
+								cancel
+							</Button>
+						</FlexContainer>
+					</Form>
+				</Container>
+			</Wrapper>
 		)
 	}
 }

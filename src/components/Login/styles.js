@@ -12,17 +12,24 @@ const scale = keyframes`
   }
 
 `
+export const Wrapper = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #0d141fde;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 3;
+`
 
 export const Container = styled.div`
 	border-radius: 3px;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	position: absolute;
-	z-index: 3;
-	right: 0;
-	left: 0;
-	margin: auto;
-	max-width: 380px;
-	min-height: 50%;
+	max-width: 480px;
+
 	background: #141f30;
 	display: flex;
 	flex-direction: column;
@@ -43,7 +50,7 @@ export const SelectionGroup = styled.div`
 
 export const Selection = styled.button`
 	outline: none;
-	font-size: 16px;
+	font-size: 18px;
 	letter-spacing: 1.6px;
 	padding: 30px;
 	background: #19293d;
@@ -59,9 +66,11 @@ export const Selection = styled.button`
       color: #59F8E8;
     `};
 `
-
+export const InputField = styled.div`
+	position: relative;
+`
 export const SubHeader = styled.p`
-	font-size: 12px;
+	font-size: 14px;
 	letter-spacing: 1.2px;
 	color: #677998;
 	text-align: center;

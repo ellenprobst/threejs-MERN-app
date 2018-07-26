@@ -48,9 +48,7 @@ class MyPage extends Component {
 		}
 	}
 
-	removeItem = async (e, id) => {
-		console.log(e)
-		e.stopPropagation()
+	removeItem = async id => {
 		const token = getToken()
 		try {
 			await axios.delete(`/items/${id}`, {
@@ -65,6 +63,7 @@ class MyPage extends Component {
 	}
 
 	render() {
+		const { user, setUser } = this.props
 		return (
 			<div>
 				<Grid>
@@ -78,9 +77,11 @@ class MyPage extends Component {
 							removeItem={this.removeItem}
 						/>
 					))}
+
+					{user && this.state.items.length === 0 && <p>You have no saved items.</p>}
 				</Grid>
 
-				{!this.props.user && <Login setUser={this.props.setUser} />}
+				{!user && <Login setUser={setUser} />}
 			</div>
 		)
 	}

@@ -3,10 +3,9 @@ import './navigation.css'
 
 import { Link } from 'react-router-dom'
 
-const Navigation = ({ user }) => {
+const Navigation = () => {
 	return (
 		<div className="nav">
-			<div>Logo</div>
 			<ul className="list">
 				<li>
 					<Link to={`/`} className="link">
