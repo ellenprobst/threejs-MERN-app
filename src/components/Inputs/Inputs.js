@@ -6,7 +6,7 @@ import Langugage from '@material-ui/icons/Language'
 import Title from '@material-ui/icons/Title'
 import Straighten from '@material-ui/icons/Straighten'
 import InsertPhoto from '@material-ui/icons/InsertPhoto'
-import './form.css'
+
 import { Round, Input } from '../GlobalStyles'
 import styled, { css, keyframes } from 'styled-components'
 
@@ -26,6 +26,14 @@ const xfade = keyframes`
 
 `
 
+const Form = styled.form`
+	position: absolute;
+	left: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+`
+
 const FormButton = Round.extend`
 	animation: ${props => (props.hide ? `${xfade} .3s both cubic-bezier(1,0,1,-0.21)` : 'none')};
 	position: relative;
@@ -41,7 +49,7 @@ const Tooltip = styled.span`
 	color: #fff;
 	text-align: center;
 	padding: 5px 0;
-	border-radius: 6px;
+	border-radius: 3px;
 	z-index: 1;
 	opacity: 0;
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
@@ -64,7 +72,7 @@ const Tooltip = styled.span`
 	}
 `
 
-class Form extends Component {
+class Inputs extends Component {
 	state = {
 		hide: false
 	}
@@ -87,7 +95,7 @@ class Form extends Component {
 		const { title, size, isWireframe, hasChildren, geometry, handleSubmit, color, isAnimated } = this.props
 		const { activeItem } = this.state
 		return (
-			<form autoComplete="off" onSubmit={handleSubmit} className="form">
+			<Form autoComplete="off" onSubmit={handleSubmit}>
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('title')}>
 					<Title style={{ color: '#59f8e8' }} />
 					<Tooltip>title</Tooltip>
@@ -191,9 +199,9 @@ class Form extends Component {
 					<Backup style={{ color: '#59f8e8' }} />
 					<Tooltip>save</Tooltip>
 				</Round>
-			</form>
+			</Form>
 		)
 	}
 }
 
-export default Form
+export default Inputs

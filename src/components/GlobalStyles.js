@@ -53,12 +53,12 @@ export const Button = styled.button`
 	flex-grow: ${props => (props.small ? '0' : '1')};
 	font-size: ${props => (props.small ? '14px' : '16px')};
 	letter-spacing: ${props => (props.small ? '1.4px' : '1.6px')};
-	padding: 15px 30px;
-	margin-top: 25px;
+	padding: ${props => (props.small ? '5px 10px' : '15px 30px')};
+	margin-top: ${props => (props.small ? '0px' : '25px')};
 	color: ${props => (props.small ? '#677998' : '#fff')};
-	border: ${props => (props.small ? 'none' : '1px solid #59f8e8')};
-	border-bottom: ${props => (props.small ? '1px solid #677998' : '1px solid #59f8e8')};
-	border-radius: ${props => (props.small ? '0px' : '3px')};
+	border: ${props => (props.small ? '1px solid #677998' : '1px solid #59f8e8')};
+
+	border-radius: 3px;
 	background: ${props => (props.full ? '#59f8e8' : 'transparent')};
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -74,9 +74,9 @@ export const Round = styled.button`
 	border: none;
 	background: transparent;
 	color: #fff;
-	background: #233b55;
-	width: ${props => (props.small ? '24px' : '46px')};
-	height: ${props => (props.small ? '24px' : '46px')};
+	background: ${props => (props.red ? '#912F56' : '#233b55')};
+	width: ${props => (props.small ? '24px' : '48px')};
+	height: ${props => (props.small ? '24px' : '48px')};
 	padding: 0;
 	min-width: 0;
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
@@ -84,7 +84,7 @@ export const Round = styled.button`
 	border-radius: 50%;
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	&:hover {
-		background: #233b55;
+		background: ${props => (props.red ? '#CC5A71' : '#495771')};
 		box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
 	}
 `
@@ -92,5 +92,3 @@ export const Round = styled.button`
 export const FlexContainer = styled.div`
 	display: flex;
 `
-
-//#912F56

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import Form from '../Form'
+import Inputs from '../Inputs'
 import Canvas from '../Canvas'
 import Code from '../CodeSnippet'
 
@@ -129,7 +129,7 @@ class ItemPage extends Component {
 		return (
 			<Container>
 				<Canvas {...inputs} />
-				<Form updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+				<Inputs updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
 				<Wrapper>
 					<Title>{inputs.title}</Title>
 				</Wrapper>

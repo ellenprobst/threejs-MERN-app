@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import Form from '../Form'
+import Inputs from '../Inputs'
 import Canvas from '../Canvas'
 import CodeSnippet from '../CodeSnippet'
 import Login from '../Login'
@@ -10,26 +10,24 @@ import { getToken } from '../../services/tokenService'
 import { Round } from '../GlobalStyles'
 import Code from '@material-ui/icons/Code'
 const Container = styled.div`
-	min-height: calc(100vh - 58px);
+	min-height: calc(100vh - 69px);
 `
 
 const Title = styled.h1`
 	font-size: 60px;
 	font-weight: normal;
 `
-const Button = styled.button`
+const CodeButton = Round.extend`
 	position: absolute;
 	bottom: 5%;
-	right: 5%;
-	padding: 25px;
-	background: #333;
-	color: #fff;
+	right: 2%;
 `
 
 const Wrapper = styled.div`
 	position: absolute;
 	bottom: 30vh;
-	left: 15vw;
+	left: 15%;
+	display: inline-block;
 `
 
 const colors = [
@@ -118,16 +116,26 @@ class Create extends Component {
 
 		return (
 			<Container>
+				{/* Canvas */}
 				<Canvas {...inputs} />
-				<Form user={this.props.user} updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+
+				{/* Inputs */}
+				<Inputs user={this.props.user} updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+
+				{/* Title */}
 				<Wrapper>
 					<Title>{inputs.title}</Title>
 				</Wrapper>
-				{showCode && <CodeSnippet close={this.showCode} />}
-				<Round onClick={this.showCode}>
-					<Code />
-				</Round>
 
+				{/* CodeButton */}
+				<CodeButton red onClick={this.showCode}>
+					<Code />
+				</CodeButton>
+
+				{/* CodeSnippet */}
+				{showCode && <CodeSnippet close={this.showCode} />}
+
+				{/* Login */}
 				{showLogin && !this.props.user && <Login setUser={this.props.setUser} hideLogin={this.hideLogin} />}
 			</Container>
 		)

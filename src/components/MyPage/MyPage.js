@@ -15,7 +15,8 @@ const Grid = styled.div`
 
 class MyPage extends Component {
 	state = {
-		items: []
+		items: [],
+		showLogin: true
 	}
 
 	async componentDidMount() {
@@ -61,13 +62,17 @@ class MyPage extends Component {
 			console.log(e)
 		}
 	}
+	hideLogin = () => {
+		this.setState({ showLogin: false })
+	}
 
 	render() {
 		const { user, setUser } = this.props
+		const { items, showLogin } = this.state
 		return (
 			<div>
 				<Grid>
-					{this.state.items.map(item => (
+					{items.map(item => (
 						<Item
 							key={item._id}
 							id={item._id}
@@ -78,10 +83,10 @@ class MyPage extends Component {
 						/>
 					))}
 
-					{user && this.state.items.length === 0 && <p>You have no saved items.</p>}
+					{user && items.length === 0 && <p>You have no saved items.</p>}
 				</Grid>
 
-				{!user && <Login setUser={setUser} />}
+				{showLogin && !user && <Login setUser={setUser} hideLogin={this.hideLogin} />}
 			</div>
 		)
 	}
