@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import axios from 'axios'
 import Form from '../Form'
 import Canvas from '../Canvas'
-import Code from '../Code'
+import CodeSnippet from '../CodeSnippet'
 import Login from '../Login'
 import './create.css'
 import { getToken } from '../../services/tokenService'
-
+import { Round } from '../GlobalStyles'
+import Code from '@material-ui/icons/Code'
 const Container = styled.div`
 	min-height: calc(100vh - 58px);
 `
@@ -118,12 +119,14 @@ class Create extends Component {
 		return (
 			<Container>
 				<Canvas {...inputs} />
-				<Form updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+				<Form user={this.props.user} updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
 				<Wrapper>
 					<Title>{inputs.title}</Title>
 				</Wrapper>
-				{showCode && <Code close={this.showCode} />}
-				<Button onClick={this.showCode}>show code</Button>
+				{showCode && <CodeSnippet close={this.showCode} />}
+				<Round onClick={this.showCode}>
+					<Code />
+				</Round>
 
 				{showLogin && !this.props.user && <Login setUser={this.props.setUser} hideLogin={this.hideLogin} />}
 			</Container>

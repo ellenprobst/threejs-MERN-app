@@ -74,9 +74,9 @@ export const Round = styled.button`
 	border: none;
 	background: transparent;
 	color: #fff;
-	background: #060a12;
-	width: ${props => (props.small ? '24px' : '56px')};
-	height: ${props => (props.small ? '24px' : '56px')};
+	background: #233b55;
+	width: ${props => (props.small ? '24px' : '46px')};
+	height: ${props => (props.small ? '24px' : '46px')};
 	padding: 0;
 	min-width: 0;
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),

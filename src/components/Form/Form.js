@@ -28,6 +28,40 @@ const xfade = keyframes`
 
 const FormButton = Round.extend`
 	animation: ${props => (props.hide ? `${xfade} .3s both cubic-bezier(1,0,1,-0.21)` : 'none')};
+	position: relative;
+`
+
+const Tooltip = styled.span`
+	visibility: hidden;
+	position: absolute;
+
+	left: 125%;
+	width: 80px;
+	background-color: #3f9a9e;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	z-index: 1;
+	opacity: 0;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	transition: opacity 0.6s;
+	${FormButton}:hover & {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 100%;
+		margin-top: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent #3f9a9e transparent transparent;
+	}
 `
 
 class Form extends Component {
@@ -46,7 +80,7 @@ class Form extends Component {
 	}
 
 	handleClick = () => {
-		this.setState({ hide: true })
+		if (this.props.user) this.setState({ hide: true })
 	}
 
 	render() {
@@ -56,6 +90,7 @@ class Form extends Component {
 			<form autoComplete="off" onSubmit={handleSubmit} className="form">
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('title')}>
 					<Title style={{ color: '#59f8e8' }} />
+					<Tooltip>title</Tooltip>
 				</FormButton>
 				<Label active={activeItem === 'title'}>
 					Title:
@@ -64,6 +99,7 @@ class Form extends Component {
 
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('size')}>
 					<Straighten style={{ color: '#59f8e8' }} />
+					<Tooltip>size</Tooltip>
 				</FormButton>
 				<Label active={activeItem === 'size'}>
 					Size:
@@ -72,13 +108,16 @@ class Form extends Component {
 
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('color')}>
 					<ColorLens style={{ color: '#59f8e8' }} />
+					<Tooltip>color</Tooltip>
 				</FormButton>
 				<Label active={activeItem === 'color'}>
 					Colour:
 					<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
 				</Label>
+
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('geometry')}>
 					<InsertPhoto style={{ color: '#59f8e8' }} />
+					<Tooltip>geometry</Tooltip>
 				</FormButton>
 				<Label active={activeItem === 'geometry'}>
 					sphere:
@@ -128,23 +167,29 @@ class Form extends Component {
 						onChange={this.handleChange}
 					/>
 				</Label>
+
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('animate')}>
 					<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
+					<Tooltip>animate</Tooltip>
 				</FormButton>
 				<Label active={activeItem === 'animate'}>
 					animate:
 					<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
 				</Label>
+
 				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('isWireframe')}>
 					<Langugage style={{ color: '#59f8e8' }} />
+					<Tooltip>wireframe</Tooltip>
 				</FormButton>
 
 				<Label active={activeItem === 'isWireframe'}>
 					wireframe:
 					<input name="isWireframe" type="checkbox" checked={isWireframe} onChange={this.handleChange} />
 				</Label>
+
 				<Round type="submit" onClick={this.handleClick}>
 					<Backup style={{ color: '#59f8e8' }} />
+					<Tooltip>save</Tooltip>
 				</Round>
 			</form>
 		)

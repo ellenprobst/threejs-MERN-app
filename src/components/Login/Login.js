@@ -9,7 +9,6 @@ import { setToken } from '../../services/tokenService'
 class Login extends Component {
 	state = {
 		type: 'login',
-
 		message: null
 	}
 

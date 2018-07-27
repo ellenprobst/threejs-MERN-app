@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import Form from '../Form'
 import Canvas from '../Canvas'
-import Code from '../Code'
+import Code from '../CodeSnippet'
 
 import { getToken } from '../../services/tokenService'
 

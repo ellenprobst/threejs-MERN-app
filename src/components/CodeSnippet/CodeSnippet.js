@@ -3,7 +3,7 @@ import Highlight from 'react-highlight'
 import styled from 'styled-components'
 
 import '../../../node_modules/highlight.js/styles/ocean.css'
-const Code = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
+const CodeSnippet = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
 	// getGeometry = () => {
 	// 	return geometry
 	// }
@@ -21,7 +21,7 @@ const Code = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
 	return (
 		<Wrapper>
 			<button onClick={close}>close</button>
-			<Highlight language="javascript">
+			<Highlight style={{ padding: '25px' }} language="javascript">
 				{`
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 2000 );
@@ -53,4 +53,4 @@ animate();`}
 	)
 }
 
-export default Code
+export default CodeSnippet
