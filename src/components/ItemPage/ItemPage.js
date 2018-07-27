@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import Code from '@material-ui/icons/Code'
 import Inputs from '../Inputs'
 import Canvas from '../Canvas'
-import Code from '../CodeSnippet'
+import CodeSnippet from '../CodeSnippet'
+import { Round } from '../GlobalStyles'
 
 import { getToken } from '../../services/tokenService'
 
@@ -15,19 +17,17 @@ const Title = styled.h1`
 	font-size: 60px;
 	font-weight: normal;
 `
-const Button = styled.button`
-	position: absolute;
-	bottom: 5%;
-	right: 5%;
-	padding: 25px;
-	background: #333;
-	color: #fff;
-`
 
 const Wrapper = styled.div`
 	position: absolute;
 	bottom: 30vh;
 	left: 15vw;
+`
+
+const CodeButton = Round.extend`
+	position: absolute;
+	bottom: 5%;
+	right: 2%;
 `
 
 const colors = [
@@ -128,13 +128,24 @@ class ItemPage extends Component {
 
 		return (
 			<Container>
+				{/* Canvas */}
 				<Canvas {...inputs} />
+
+				{/* Inputs */}
 				<Inputs updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+
+				{/* Title */}
 				<Wrapper>
 					<Title>{inputs.title}</Title>
 				</Wrapper>
-				{showCode && <Code close={this.showCode} />}
-				<Button onClick={this.showCode}>show code</Button>
+
+				{/* CodeButton */}
+				<CodeButton red onClick={this.showCode}>
+					<Code />
+				</CodeButton>
+
+				{/* CodeSnippet */}
+				{showCode && <CodeSnippet close={this.showCode} />}
 			</Container>
 		)
 	}

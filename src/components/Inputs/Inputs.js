@@ -29,6 +29,7 @@ const xfade = keyframes`
 const Form = styled.form`
 	position: absolute;
 	left: 15px;
+	bottom: 20%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -37,6 +38,10 @@ const Form = styled.form`
 const FormButton = Round.extend`
 	animation: ${props => (props.hide ? `${xfade} .3s both cubic-bezier(1,0,1,-0.21)` : 'none')};
 	position: relative;
+`
+const Container = styled.div`
+	display: flex;
+	align-items: center;
 `
 
 const Tooltip = styled.span`
@@ -88,7 +93,7 @@ class Inputs extends Component {
 	}
 
 	handleClick = () => {
-		if (this.props.user) this.setState({ hide: true })
+		if (this.props.user) this.setState({ hide: true, activeItem: '' })
 	}
 
 	render() {
@@ -96,105 +101,125 @@ class Inputs extends Component {
 		const { activeItem } = this.state
 		return (
 			<Form autoComplete="off" onSubmit={handleSubmit}>
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('title')}>
-					<Title style={{ color: '#59f8e8' }} />
-					<Tooltip>title</Tooltip>
-				</FormButton>
-				<Label active={activeItem === 'title'}>
-					Title:
-					<Input name="title" type="text" value={title} onChange={this.handleChange} />
-				</Label>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('title')}>
+						<Title style={{ color: '#59f8e8' }} />
+						<Tooltip>title</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'title'}>
+						Title:
+						<Input name="title" type="text" value={title} onChange={this.handleChange} />
+					</Label>
+				</Container>
 
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('size')}>
-					<Straighten style={{ color: '#59f8e8' }} />
-					<Tooltip>size</Tooltip>
-				</FormButton>
-				<Label active={activeItem === 'size'}>
-					Size:
-					<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
-				</Label>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('size')}>
+						<Straighten style={{ color: '#59f8e8' }} />
+						<Tooltip>size</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'size'}>
+						Size:
+						<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
+					</Label>
+				</Container>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('color')}>
+						<ColorLens style={{ color: '#59f8e8' }} />
+						<Tooltip>color</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'color'}>
+						Colour:
+						<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
+					</Label>
+				</Container>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('geometry')}>
+						<InsertPhoto style={{ color: '#59f8e8' }} />
+						<Tooltip>geometry</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'geometry'}>
+						sphere:
+						<input
+							name="geometry"
+							type="radio"
+							value="sphere"
+							checked={geometry === 'sphere'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+					<Label active={activeItem === 'geometry'}>
+						cube:
+						<input
+							name="geometry"
+							type="radio"
+							value="cube"
+							checked={geometry === 'cube'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+					<Label active={activeItem === 'geometry'}>
+						torus:
+						<input
+							name="geometry"
+							type="radio"
+							value="torus"
+							checked={geometry === 'torus'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+					<Label active={activeItem === 'geometry'}>
+						torusKnot:
+						<input
+							name="geometry"
+							type="radio"
+							value="torusKnot"
+							checked={geometry === 'torusKnot'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+					<Label active={activeItem === 'geometry'}>
+						octa:
+						<input
+							name="geometry"
+							type="radio"
+							value="octa"
+							checked={geometry === 'octa'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+					<Label active={activeItem === 'geometry'}>
+						icosa:
+						<input
+							name="geometry"
+							type="radio"
+							value="icosa"
+							checked={geometry === 'icosa'}
+							onChange={this.handleChange}
+						/>
+					</Label>
+				</Container>
 
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('color')}>
-					<ColorLens style={{ color: '#59f8e8' }} />
-					<Tooltip>color</Tooltip>
-				</FormButton>
-				<Label active={activeItem === 'color'}>
-					Colour:
-					<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
-				</Label>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('animate')}>
+						<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
+						<Tooltip>animate</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'animate'}>
+						animate:
+						<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
+					</Label>
+				</Container>
+				<Container>
+					<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('isWireframe')}>
+						<Langugage style={{ color: '#59f8e8' }} />
+						<Tooltip>wireframe</Tooltip>
+					</FormButton>
 
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('geometry')}>
-					<InsertPhoto style={{ color: '#59f8e8' }} />
-					<Tooltip>geometry</Tooltip>
-				</FormButton>
-				<Label active={activeItem === 'geometry'}>
-					sphere:
-					<input
-						name="geometry"
-						type="radio"
-						value="sphere"
-						checked={geometry === 'sphere'}
-						onChange={this.handleChange}
-					/>
-				</Label>
-				<Label active={activeItem === 'geometry'}>
-					cube:
-					<input name="geometry" type="radio" value="cube" checked={geometry === 'cube'} onChange={this.handleChange} />
-				</Label>
-				<Label active={activeItem === 'geometry'}>
-					torus:
-					<input
-						name="geometry"
-						type="radio"
-						value="torus"
-						checked={geometry === 'torus'}
-						onChange={this.handleChange}
-					/>
-				</Label>
-				<Label active={activeItem === 'geometry'}>
-					torusKnot:
-					<input
-						name="geometry"
-						type="radio"
-						value="torusKnot"
-						checked={geometry === 'torusKnot'}
-						onChange={this.handleChange}
-					/>
-				</Label>
-				<Label active={activeItem === 'geometry'}>
-					octa:
-					<input name="geometry" type="radio" value="octa" checked={geometry === 'octa'} onChange={this.handleChange} />
-				</Label>
-				<Label active={activeItem === 'geometry'}>
-					icosa:
-					<input
-						name="geometry"
-						type="radio"
-						value="icosa"
-						checked={geometry === 'icosa'}
-						onChange={this.handleChange}
-					/>
-				</Label>
-
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('animate')}>
-					<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
-					<Tooltip>animate</Tooltip>
-				</FormButton>
-				<Label active={activeItem === 'animate'}>
-					animate:
-					<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
-				</Label>
-
-				<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('isWireframe')}>
-					<Langugage style={{ color: '#59f8e8' }} />
-					<Tooltip>wireframe</Tooltip>
-				</FormButton>
-
-				<Label active={activeItem === 'isWireframe'}>
-					wireframe:
-					<input name="isWireframe" type="checkbox" checked={isWireframe} onChange={this.handleChange} />
-				</Label>
-
+					<Label active={activeItem === 'isWireframe'}>
+						wireframe:
+						<input name="isWireframe" type="checkbox" checked={isWireframe} onChange={this.handleChange} />
+					</Label>
+				</Container>
 				<Round type="submit" onClick={this.handleClick}>
 					<Backup style={{ color: '#59f8e8' }} />
 					<Tooltip>save</Tooltip>
