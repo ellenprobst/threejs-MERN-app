@@ -1,10 +1,10 @@
 import React from 'react'
 import './navigation.css'
 import Code from '@material-ui/icons/Code'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Button } from '../GlobalStyles'
 
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 const Item = styled.li`
 	align-self: center;
@@ -16,26 +16,26 @@ const Navigation = ({ toggleLogin, user, logout }) => {
 			<Code />
 			<ul className="list">
 				<Item>
-					<Link to={`/`} className="link">
+					<NavLink exact to={`/`} activeClassName="active" className="link">
 						Home
-					</Link>
+					</NavLink>
 				</Item>
 				<Item>
-					<Link to={`/create`} className="link">
+					<NavLink to={`/create`} activeClassName="active" className="link">
 						Create
-					</Link>
+					</NavLink>
 				</Item>
 				<Item>
-					<Link to={`/mypage`} className="link">
+					<NavLink to={`/mypage`} activeClassName="active" className="link">
 						MyPage
-					</Link>
+					</NavLink>
 				</Item>
 				{user ? (
-					<Button small onClick={logout}>
+					<Button spaced purple small onClick={logout}>
 						Logout
 					</Button>
 				) : (
-					<Button small onClick={toggleLogin}>
+					<Button spaced purple small onClick={toggleLogin}>
 						Login
 					</Button>
 				)}

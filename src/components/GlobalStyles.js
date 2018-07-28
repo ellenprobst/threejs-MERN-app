@@ -20,20 +20,14 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 	return acc
 }, {})
 
-// const primaryColor = ''
-
-// const accentColor = '#59f8e8'
-
-//const accentColor = '#CC5A71'
-
 export const Input = styled.input`
-	padding: 10px;
-	margin-bottom: 15px;
+	padding: 5px 10px;
+
 	color: #fff;
 	font-size: 18px;
 	background: transparent;
 	border: none;
-	border-bottom: 1px solid #19293d;
+	border-bottom: 1px solid #40a0a2;
 	outline: none;
 	transition: all 0.3s ease;
 	letter-spacing: 1.6px;
@@ -55,11 +49,13 @@ export const Button = styled.button`
 	letter-spacing: ${props => (props.small ? '1.4px' : '1.6px')};
 	padding: ${props => (props.small ? '5px 10px' : '15px 30px')};
 	margin-top: ${props => (props.small ? '0px' : '25px')};
-	color: ${props => (props.small ? '#677998' : '#fff')};
-	border: ${props => (props.small ? '1px solid #677998' : '1px solid #59f8e8')};
+	margin-left: ${props => (props.spaced ? '25px' : '0px')};
+	color: ${props => (props.small && props.purple ? '#fff' : props.small ? '#677998' : '#fff')};
+	border: ${props => (props.small || props.purple ? '1px solid #677998' : '1px solid #59f8e8')};
 
 	border-radius: 3px;
-	background: ${props => (props.full ? '#59f8e8' : 'transparent')};
+	background: ${props => (props.purple ? '#677998' : props.full ? '#59f8e8' : 'transparent')};
+
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -91,4 +87,5 @@ export const Round = styled.button`
 
 export const FlexContainer = styled.div`
 	display: flex;
+	align-items: center;
 `

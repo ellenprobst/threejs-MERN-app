@@ -6,14 +6,20 @@
 
 .list {
 	display: flex;
+	width: 33%;
+	justify-content: space-around;
 }
 
 .link {
 	color: #fff;
 	margin: 0 10px;
-	padding: 10px;
+	padding: 10px 0 5px;
 }
 
 .link:hover {
+	border-bottom: 1px solid #fff;
+}
+
+.active {
 	border-bottom: 1px solid #fff;
 }

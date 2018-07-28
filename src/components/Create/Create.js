@@ -1,34 +1,16 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import axios from 'axios'
+import Code from '@material-ui/icons/Code'
+
+// components
 import Inputs from '../Inputs'
 import Canvas from '../Canvas'
 import CodeSnippet from '../CodeSnippet'
 import Login from '../Login'
-import './create.css'
+// helpers
 import { getToken } from '../../services/tokenService'
-import { Round } from '../GlobalStyles'
-import Code from '@material-ui/icons/Code'
-const Container = styled.div`
-	min-height: calc(100vh - 69px);
-`
-
-const Title = styled.h1`
-	font-size: 60px;
-	font-weight: normal;
-`
-const CodeButton = Round.extend`
-	position: absolute;
-	bottom: 5%;
-	right: 2%;
-`
-
-const Wrapper = styled.div`
-	position: absolute;
-	bottom: 30vh;
-	left: 15%;
-	display: inline-block;
-`
+// styles
+import { Container, Wrapper, CodeButton, NewButton, Title } from './styles'
 
 const colors = [
 	['#12c2e9', '#c471ed'],
@@ -54,7 +36,8 @@ class Create extends Component {
 			hasChildren: false
 		},
 		showCode: false,
-		showLogin: false
+		showLogin: false,
+		isSaved: false
 	}
 
 	getImage = () => {
@@ -62,6 +45,20 @@ class Create extends Component {
 		const image = element[0].toDataURL()
 
 		return image
+	}
+
+	resetInputs = () => {
+		this.setState({
+			inputs: {
+				title: 'App Title',
+				size: 4,
+				color: ['#141e30', '#243b55'],
+				geometry: 'cube',
+				isAnimated: false,
+				isWireframe: false,
+				hasChildren: false
+			}
+		})
 	}
 
 	postRequest = async inputs => {
@@ -73,13 +70,14 @@ class Create extends Component {
 					Authorization: `Bearer ${token}`
 				}
 			})
+
+			this.setState({ isSaved: true })
 		} catch (e) {
 			console.log(e)
 		}
 	}
 
-	handleSubmit = e => {
-		e.preventDefault()
+	handleSubmit = () => {
 		const inputs = {
 			...this.state.inputs,
 			image: this.getImage()
@@ -112,7 +110,7 @@ class Create extends Component {
 	}
 
 	render() {
-		const { inputs, showCode, showLogin } = this.state
+		const { inputs, showCode, showLogin, isSaved } = this.state
 
 		return (
 			<Container>
@@ -120,7 +118,20 @@ class Create extends Component {
 				<Canvas {...inputs} />
 
 				{/* Inputs */}
-				<Inputs user={this.props.user} updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+				<Inputs
+					resetInputs={this.resetInputs}
+					user={this.props.user}
+					updateState={this.updateState}
+					handleSubmit={this.handleSubmit}
+					isSaved={isSaved}
+					{...inputs}
+				/>
+
+				{isSaved && (
+					<NewButton type="button" className="button" onClick={this.reset}>
+						Create New Item
+					</NewButton>
+				)}
 
 				{/* Title */}
 				<Wrapper>

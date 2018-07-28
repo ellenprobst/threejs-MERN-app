@@ -53,7 +53,8 @@ class ItemPage extends Component {
 			isWireframe: false,
 			hasChildren: false
 		},
-		showCode: false
+		showCode: false,
+		isSaved: false
 	}
 
 	async componentDidMount() {
@@ -93,13 +94,13 @@ class ItemPage extends Component {
 					Authorization: `Bearer ${token}`
 				}
 			})
+			this.setState({ isSaved: true })
 		} catch (e) {
 			console.log(e)
 		}
 	}
 
-	handleSubmit = e => {
-		e.preventDefault()
+	handleSubmit = () => {
 		const inputs = {
 			...this.state.inputs,
 			image: this.getImage()
@@ -124,7 +125,7 @@ class ItemPage extends Component {
 	}
 
 	render() {
-		const { inputs, showCode } = this.state
+		const { inputs, showCode, isSaved } = this.state
 
 		return (
 			<Container>
@@ -132,7 +133,13 @@ class ItemPage extends Component {
 				<Canvas {...inputs} />
 
 				{/* Inputs */}
-				<Inputs updateState={this.updateState} handleSubmit={this.handleSubmit} {...inputs} />
+				<Inputs
+					isSaved={isSaved}
+					edit={true}
+					updateState={this.updateState}
+					handleSubmit={this.handleSubmit}
+					{...inputs}
+				/>
 
 				{/* Title */}
 				<Wrapper>
