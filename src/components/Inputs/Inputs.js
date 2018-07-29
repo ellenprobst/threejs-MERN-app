@@ -48,141 +48,139 @@ class Inputs extends Component {
 		const { title, size, isWireframe, geometry, color, isAnimated, isSaved, showInputs } = this.props
 		const { activeItem } = this.state
 		return (
-			<div>
-				<Form autoComplete="off" onSubmit={this.handleSubmit}>
-					<Container>
-						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('title')}>
-							<Title style={{ color: '#59f8e8' }} />
-							<Tooltip>title</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'title'}>
-							<Input name="title" type="text" value={title} onChange={this.handleChange} />
-						</Label>
-					</Container>
-
-					<Container>
-						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('geometry')}>
-							<InsertPhoto style={{ color: '#59f8e8' }} />
-							<Tooltip>geometry</Tooltip>
-						</FormButton>
-						<Column>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="sphere"
-									checked={geometry === 'sphere'}
-									onChange={this.handleChange}
-								/>
-								sphere
-							</Label>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="cube"
-									checked={geometry === 'cube'}
-									onChange={this.handleChange}
-								/>
-								cube
-							</Label>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="torus"
-									checked={geometry === 'torus'}
-									onChange={this.handleChange}
-								/>
-								torus
-							</Label>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="torusKnot"
-									checked={geometry === 'torusKnot'}
-									onChange={this.handleChange}
-								/>
-								torusKnot
-							</Label>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="octa"
-									checked={geometry === 'octa'}
-									onChange={this.handleChange}
-								/>
-								octa
-							</Label>
-							<Label active={activeItem === 'geometry'}>
-								<input
-									name="geometry"
-									type="radio"
-									value="icosa"
-									checked={geometry === 'icosa'}
-									onChange={this.handleChange}
-								/>
-								icosa
-							</Label>
-						</Column>
-					</Container>
-
-					<Container>
-						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('size')}>
-							<Straighten style={{ color: '#59f8e8' }} />
-							<Tooltip>size</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'size'}>
-							<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
-						</Label>
-					</Container>
-
-					<Container>
-						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('color')}>
-							<ColorLens style={{ color: '#59f8e8' }} />
-							<Tooltip>color</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'color'}>
-							<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
-						</Label>
-					</Container>
-
-					<Container>
-						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('animate')}>
-							<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
-							<Tooltip>animate</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'animate'}>
-							animate:
-							<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
-						</Label>
-					</Container>
-
-					<Label hide={showInputs} active={true}>
-						<input
-							style={{ visibility: 'hidden', position: 'absolute' }}
-							name="isWireframe"
-							type="checkbox"
-							checked={isWireframe}
-							onChange={this.handleChange}
-						/>
-						<Toggle checked={isWireframe} type="button">
-							<Langugage style={{ color: '#59f8e8' }} />
-							<Tooltip>wireframe</Tooltip>
-						</Toggle>
+			<Form autoComplete="off" onSubmit={this.handleSubmit}>
+				<Container>
+					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('title')}>
+						<Title style={{ color: '#59f8e8' }} />
+						<Tooltip>title</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'title'}>
+						<Input name="title" type="text" value={title} onChange={this.handleChange} />
 					</Label>
+				</Container>
 
-					<FlexContainer>
-						<Round type="submit">
-							{isSaved ? <Done style={{ color: '#59f8e8' }} /> : <Backup style={{ color: '#59f8e8' }} />}
-							<Tooltip>save</Tooltip>
-						</Round>
-						{isSaved && <p>Saved!</p>}
-					</FlexContainer>
-				</Form>
-			</div>
+				<Container>
+					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('geometry')}>
+						<InsertPhoto style={{ color: '#59f8e8' }} />
+						<Tooltip>geometry</Tooltip>
+					</FormButton>
+					<Column>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="sphere"
+								checked={geometry === 'sphere'}
+								onChange={this.handleChange}
+							/>
+							sphere
+						</Label>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="cube"
+								checked={geometry === 'cube'}
+								onChange={this.handleChange}
+							/>
+							cube
+						</Label>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="torus"
+								checked={geometry === 'torus'}
+								onChange={this.handleChange}
+							/>
+							torus
+						</Label>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="torusKnot"
+								checked={geometry === 'torusKnot'}
+								onChange={this.handleChange}
+							/>
+							torusKnot
+						</Label>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="octa"
+								checked={geometry === 'octa'}
+								onChange={this.handleChange}
+							/>
+							octa
+						</Label>
+						<Label active={activeItem === 'geometry'}>
+							<input
+								name="geometry"
+								type="radio"
+								value="icosa"
+								checked={geometry === 'icosa'}
+								onChange={this.handleChange}
+							/>
+							icosa
+						</Label>
+					</Column>
+				</Container>
+
+				<Container>
+					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('size')}>
+						<Straighten style={{ color: '#59f8e8' }} />
+						<Tooltip>size</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'size'}>
+						<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
+					</Label>
+				</Container>
+
+				<Container>
+					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('color')}>
+						<ColorLens style={{ color: '#59f8e8' }} />
+						<Tooltip>color</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'color'}>
+						<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
+					</Label>
+				</Container>
+
+				<Container>
+					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('animate')}>
+						<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
+						<Tooltip>animate</Tooltip>
+					</FormButton>
+					<Label active={activeItem === 'animate'}>
+						animate:
+						<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
+					</Label>
+				</Container>
+
+				<Label hide={showInputs} active={true}>
+					<input
+						style={{ visibility: 'hidden', position: 'absolute' }}
+						name="isWireframe"
+						type="checkbox"
+						checked={isWireframe}
+						onChange={this.handleChange}
+					/>
+					<Toggle checked={isWireframe} type="button">
+						<Langugage style={{ color: '#59f8e8' }} />
+						<Tooltip>wireframe</Tooltip>
+					</Toggle>
+				</Label>
+
+				<FlexContainer>
+					<Round type="submit">
+						{isSaved ? <Done style={{ color: '#59f8e8' }} /> : <Backup style={{ color: '#59f8e8' }} />}
+						<Tooltip>save</Tooltip>
+					</Round>
+					{isSaved && <p>Saved!</p>}
+				</FlexContainer>
+			</Form>
 		)
 	}
 }

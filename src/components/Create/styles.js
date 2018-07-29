@@ -13,12 +13,13 @@ const slide = keyframes`
 `
 
 export const Container = styled.div`
-	min-height: calc(100vh - 69px);
+	min-height: calc(100vh - 85px);
 `
 
 export const Title = styled.h1`
 	font-size: 60px;
 	font-weight: normal;
+	font-family: 'Raleway', sans-serif;
 `
 export const CodeButton = Round.extend`
 	position: absolute;

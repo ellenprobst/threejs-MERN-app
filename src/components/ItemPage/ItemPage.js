@@ -10,7 +10,7 @@ import { Round } from '../GlobalStyles'
 import { getToken } from '../../services/tokenService'
 
 const Container = styled.div`
-	min-height: calc(100vh - 58px);
+	min-height: calc(100vh - 85px);
 `
 
 const Title = styled.h1`

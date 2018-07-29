@@ -20,6 +20,7 @@ export const Label = styled.label`
 `
 
 export const Form = styled.form`
+	padding-top: 50px;
 	position: relative;
 	left: -15px;
 	display: flex;

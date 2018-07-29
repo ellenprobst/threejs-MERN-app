@@ -3,7 +3,7 @@ import './navigation.css'
 import Code from '@material-ui/icons/Code'
 import { Link, NavLink } from 'react-router-dom'
 import { Button } from '../GlobalStyles'
-
+import Logo from '../../Logo.js'
 import styled from 'styled-components'
 
 const Item = styled.li`
@@ -13,7 +13,7 @@ const Item = styled.li`
 const Navigation = ({ toggleLogin, user, logout }) => {
 	return (
 		<div className="nav">
-			<Code />
+			<Logo />
 			<ul className="list">
 				<Item>
 					<NavLink exact to={`/`} activeClassName="active" className="link">

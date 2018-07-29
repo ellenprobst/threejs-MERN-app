@@ -29,6 +29,8 @@ const CodeSnippet = ({ color, size, geometrye, isAnimated, isWireframe, close })
 		padding: 0 25px;
 		background: #2b303b;
 		animation: ${xfade} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+		box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+			0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 	`
 
 	const CloseButton = Round.extend`
@@ -36,14 +38,11 @@ const CodeSnippet = ({ color, size, geometrye, isAnimated, isWireframe, close })
 		top: -20px;
 		margin: 0;
 		left: -20px;
-		background: #912F56;
-		&:hover {
-			background: #cc5a71;
 	`
 
 	return (
 		<Wrapper>
-			<CloseButton onClick={close}>
+			<CloseButton red onClick={close}>
 				<Close />
 			</CloseButton>
 			<Highlight language="javascript">

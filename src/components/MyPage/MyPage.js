@@ -9,7 +9,8 @@ import { getToken } from '../../services/tokenService'
 
 const Grid = styled.div`
 	display: grid;
-	grid-gap: 20px;
+	padding: 50px 0 35px 0;
+	grid-gap: 80px 50px;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `
 

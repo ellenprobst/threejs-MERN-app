@@ -81,7 +81,7 @@ export const Round = styled.button`
 	border-radius: 50%;
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	&:hover {
-		background: ${props => (props.red ? '#CC5A71' : '#495771')};
+		background: ${props => (props.red ? '#ad446d' : '#495771')};
 		box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
 	}
 `
