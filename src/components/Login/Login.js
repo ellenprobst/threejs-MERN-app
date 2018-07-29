@@ -54,7 +54,7 @@ class Login extends Component {
 						</Selection>
 					</SelectionGroup>
 
-					<Form onSubmit={this.handleSubmit}>
+					<Form autoComplete="off" onSubmit={this.handleSubmit}>
 						<SubHeader>You'll need to login to continue</SubHeader>
 						<Input spaced name="email" type="email" placeholder="email" onChange={this.handleChange} />
 
