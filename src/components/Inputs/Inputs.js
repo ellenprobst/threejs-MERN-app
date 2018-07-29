@@ -13,9 +13,9 @@ import { Label, Form, FormButton, Toggle, Container, Column, Tooltip } from './s
 
 class Inputs extends Component {
 	state = {
-		hide: false,
 		activeItem: null
 	}
+
 	showInput = name =>
 		this.setState((prevState, props) => ({
 			activeItem: prevState.activeItem === name ? '' : name
@@ -31,7 +31,7 @@ class Inputs extends Component {
 
 	hideInputs = () => {
 		if (this.props.user) {
-			this.setState({ hide: true })
+			this.setState({ activeItem: '' })
 		}
 	}
 
@@ -44,23 +44,14 @@ class Inputs extends Component {
 		this.props.handleSubmit()
 	}
 
-	reset = () => {
-		this.setState({
-			hide: false,
-			isSaved: false,
-			activeItem: null
-		})
-		this.props.resetInputs()
-	}
-
 	render() {
-		const { title, size, isWireframe, geometry, color, isAnimated, isSaved } = this.props
+		const { title, size, isWireframe, geometry, color, isAnimated, isSaved, showInputs } = this.props
 		const { activeItem } = this.state
 		return (
 			<div>
 				<Form autoComplete="off" onSubmit={this.handleSubmit}>
 					<Container>
-						<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('title')}>
+						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('title')}>
 							<Title style={{ color: '#59f8e8' }} />
 							<Tooltip>title</Tooltip>
 						</FormButton>
@@ -70,25 +61,7 @@ class Inputs extends Component {
 					</Container>
 
 					<Container>
-						<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('size')}>
-							<Straighten style={{ color: '#59f8e8' }} />
-							<Tooltip>size</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'size'}>
-							<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
-						</Label>
-					</Container>
-					<Container>
-						<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('color')}>
-							<ColorLens style={{ color: '#59f8e8' }} />
-							<Tooltip>color</Tooltip>
-						</FormButton>
-						<Label active={activeItem === 'color'}>
-							<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
-						</Label>
-					</Container>
-					<Container>
-						<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('geometry')}>
+						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('geometry')}>
 							<InsertPhoto style={{ color: '#59f8e8' }} />
 							<Tooltip>geometry</Tooltip>
 						</FormButton>
@@ -157,7 +130,27 @@ class Inputs extends Component {
 					</Container>
 
 					<Container>
-						<FormButton hide={this.state.hide} type="button" onClick={() => this.showInput('animate')}>
+						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('size')}>
+							<Straighten style={{ color: '#59f8e8' }} />
+							<Tooltip>size</Tooltip>
+						</FormButton>
+						<Label active={activeItem === 'size'}>
+							<input name="size" type="range" min="1" max="8" value={size} onChange={this.handleChange} />
+						</Label>
+					</Container>
+
+					<Container>
+						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('color')}>
+							<ColorLens style={{ color: '#59f8e8' }} />
+							<Tooltip>color</Tooltip>
+						</FormButton>
+						<Label active={activeItem === 'color'}>
+							<input name="color" type="range" min="0" max="8" defaultValue={color} onChange={this.handleChange} />
+						</Label>
+					</Container>
+
+					<Container>
+						<FormButton hide={showInputs} type="button" onClick={() => this.showInput('animate')}>
 							<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
 							<Tooltip>animate</Tooltip>
 						</FormButton>
@@ -167,7 +160,7 @@ class Inputs extends Component {
 						</Label>
 					</Container>
 
-					<Label hide={this.state.hide} active={true}>
+					<Label hide={showInputs} active={true}>
 						<input
 							style={{ visibility: 'hidden', position: 'absolute' }}
 							name="isWireframe"

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 import axios from 'axios'
-import { Container, SubHeader, InputField, SelectionGroup, Selection, Form, Wrapper } from './styles'
+import { Container, SubHeader, Cancel, SelectionGroup, Selection, Form, Wrapper } from './styles'
 import { Button, Input, FlexContainer } from '../GlobalStyles'
 import Person from '@material-ui/icons/Person'
 import { setToken } from '../../services/tokenService'
@@ -25,14 +25,12 @@ class Login extends Component {
 			const res = await axios.post(`/auth/${route}`, { email, password })
 
 			const { token, doc } = res.data.payload
-
-			console.log('succes', res)
-
 			setToken(token)
 
 			this.props.setUser(doc)
 		} catch (e) {
 			this.setState({ message: e })
+			console.log(e)
 		}
 	}
 
@@ -41,7 +39,7 @@ class Login extends Component {
 	}
 
 	render() {
-		const { type } = this.state
+		const { type, success } = this.state
 
 		return (
 			<Wrapper>
@@ -58,18 +56,15 @@ class Login extends Component {
 
 					<Form onSubmit={this.handleSubmit}>
 						<SubHeader>You'll need to login to continue</SubHeader>
+						<Input spaced name="email" type="email" placeholder="email" onChange={this.handleChange} />
 
-						<InputField>
-							<Person />
-							<Input name="email" type="email" placeholder="email" onChange={this.handleChange} />
-						</InputField>
-						<Input name="password" type="password" placeholder="password" onChange={this.handleChange} />
+						<Input spaced name="password" type="password" placeholder="password" onChange={this.handleChange} />
 						<FlexContainer>
 							<Button type="submit">{type}</Button>
 
-							<Button small onClick={this.props.hideLogin}>
+							<Cancel small onClick={this.props.hideLogin}>
 								cancel
-							</Button>
+							</Cancel>
 						</FlexContainer>
 					</Form>
 				</Container>

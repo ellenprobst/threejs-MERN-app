@@ -76,3 +76,19 @@ export const SubHeader = styled.p`
 	text-align: center;
 	margin: 0 0 20px;
 `
+
+export const Cancel = styled.button`
+	font-size: 14px;
+	letter-spacing: 1.2px;
+	color: #677998;
+	padding-left: 0;
+	padding-right: 0;
+	border: none;
+	border-bottom: 1px solid #677998;
+	background: transparent;
+	align-self: flex-end;
+	margin-left: 35px;
+	&:hover {
+		color: #b7c6e1;
+	}
+`

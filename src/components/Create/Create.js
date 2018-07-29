@@ -37,7 +37,8 @@ class Create extends Component {
 		},
 		showCode: false,
 		showLogin: false,
-		isSaved: false
+		isSaved: false,
+		showInputs: true
 	}
 
 	getImage = () => {
@@ -57,7 +58,11 @@ class Create extends Component {
 				isAnimated: false,
 				isWireframe: false,
 				hasChildren: false
-			}
+			},
+			showCode: false,
+			showLogin: false,
+			isSaved: false,
+			showInputs: true
 		})
 	}
 
@@ -85,6 +90,7 @@ class Create extends Component {
 
 		if (this.props.user) {
 			this.postRequest(inputs)
+			this.setState({ showInputs: false })
 		} else {
 			this.setState({ showLogin: true })
 		}
@@ -110,7 +116,7 @@ class Create extends Component {
 	}
 
 	render() {
-		const { inputs, showCode, showLogin, isSaved } = this.state
+		const { inputs, showCode, showLogin, isSaved, showInputs } = this.state
 
 		return (
 			<Container>
@@ -120,6 +126,7 @@ class Create extends Component {
 				{/* Inputs */}
 				<Inputs
 					resetInputs={this.resetInputs}
+					showInpurts={showInputs}
 					user={this.props.user}
 					updateState={this.updateState}
 					handleSubmit={this.handleSubmit}
@@ -128,7 +135,7 @@ class Create extends Component {
 				/>
 
 				{isSaved && (
-					<NewButton type="button" className="button" onClick={this.reset}>
+					<NewButton type="button" className="button" onClick={this.resetInputs}>
 						Create New Item
 					</NewButton>
 				)}
