@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Highlight from 'react-highlight'
 import styled, { keyframes } from 'styled-components'
-import { Round } from '../GlobalStyles'
+import { Round, Button } from '../GlobalStyles'
 import Close from '@material-ui/icons/Close'
 import '../../../node_modules/highlight.js/styles/ocean.css'
-const CodeSnippet = ({ color, size, geometrye, isAnimated, isWireframe, close }) => {
-	const xfade = keyframes`
+
+const xfade = keyframes`
 
  0% {
     -webkit-transform: scale(0.5);
@@ -22,31 +22,45 @@ const CodeSnippet = ({ color, size, geometrye, isAnimated, isWireframe, close })
 
 `
 
-	const Wrapper = styled.div`
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		padding: 0 25px;
-		background: #2b303b;
-		animation: ${xfade} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-		box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-			0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-	`
+const Wrapper = styled.div`
+	position: absolute;
+	top: 90px;
+	right: 0;
+	padding: 0 25px 25px;
+	background: #2b303b;
+	animation: ${xfade} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+`
 
-	const CloseButton = Round.extend`
-		position: absolute;
-		top: -20px;
-		margin: 0;
-		left: -20px;
-	`
+const CloseButton = Round.extend`
+	position: absolute;
+	top: -20px;
+	margin: 0;
+	left: -20px;
+`
 
-	return (
-		<Wrapper>
-			<CloseButton red onClick={close}>
-				<Close />
-			</CloseButton>
-			<Highlight language="javascript">
-				{`
+const Copy = Button.extend`
+	display: block;
+	margin-left: auto;
+`
+
+class CodeSnippet extends Component {
+	state = {
+		isCopied: false
+	}
+
+	handleClick = () => this.setState({ isCopied: true })
+
+	render() {
+		const { color, size, geometrye, isAnimated, isWireframe, close } = this.props
+		return (
+			<Wrapper>
+				<CloseButton red onClick={close}>
+					<Close />
+				</CloseButton>
+				<Highlight language="javascript">
+					{`
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 2000 );
 
@@ -72,9 +86,11 @@ var animate = function () {
 };
 
 animate();`}
-			</Highlight>
-		</Wrapper>
-	)
+				</Highlight>
+				<Copy onClick={this.handleClick}>{this.state.isCopied ? 'Copied' : 'Copy'}</Copy>
+			</Wrapper>
+		)
+	}
 }
 
 export default CodeSnippet

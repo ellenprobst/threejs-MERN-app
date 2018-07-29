@@ -52,16 +52,17 @@ export const Button = styled.button`
 	margin-left: ${props => (props.spaced ? '25px' : '0px')};
 	color: ${props => (props.small && props.purple ? '#fff' : props.small ? '#677998' : '#fff')};
 	border: ${props => (props.small || props.purple ? '1px solid #677998' : '1px solid #59f8e8')};
-
+	align-self: center;
 	border-radius: 3px;
 	background: ${props => (props.purple ? '#1625379e' : props.full ? '#59f8e8' : 'transparent')};
 
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-	transition: background 0.3s ease;
+
 	&:hover {
 		box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
-		background: ${props => (props.purple ? '#1625379e' : '#59f8e8')};
+		background: ${props => (props.purple ? '#1625379e' : '#3f979c')};
+		border-color: ${props => (props.purple ? '#677998' : '#3f979c')};
 	}
 `
 

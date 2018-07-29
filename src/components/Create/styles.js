@@ -39,4 +39,6 @@ export const NewButton = Button.extend`
 	position: relative;
 	width: 180px;
 	animation: ${slide} 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both 0.5s;
+	border: 1px solid #fff;
+	background: transparent;
 `
