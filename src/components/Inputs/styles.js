@@ -63,9 +63,11 @@ export const Container = styled.div`
 	align-items: center;
 `
 
-export const Column = styled.div`
+export const Geometries = styled.div`
 	display: flex;
 	flex-direction: column;
+	position: absolute;
+	left: 80px;
 `
 
 export const Tooltip = styled.span`

@@ -9,7 +9,7 @@ import InsertPhoto from '@material-ui/icons/InsertPhoto'
 import Done from '@material-ui/icons/Done'
 
 import { Input, FlexContainer, Round } from '../GlobalStyles'
-import { Label, Form, FormButton, Toggle, Container, Column, Tooltip } from './styles'
+import { Label, Form, FormButton, Toggle, Container, Geometries, Tooltip } from './styles'
 
 class Inputs extends Component {
 	state = {
@@ -64,7 +64,7 @@ class Inputs extends Component {
 						<InsertPhoto style={{ color: '#59f8e8' }} />
 						<Tooltip>geometry</Tooltip>
 					</FormButton>
-					<Column>
+					<Geometries>
 						<Label active={activeItem === 'geometry'}>
 							<input
 								name="geometry"
@@ -125,7 +125,7 @@ class Inputs extends Component {
 							/>
 							icosa
 						</Label>
-					</Column>
+					</Geometries>
 				</Container>
 
 				<Container>
