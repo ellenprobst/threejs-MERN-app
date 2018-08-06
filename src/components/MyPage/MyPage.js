@@ -22,17 +22,19 @@ class MyPage extends Component {
 
 	async componentDidMount() {
 		this.refresh()
+		console.log('%c did mount ', 'background: darkcyan; color: #fff; padding: 2px;')
 	}
 
 	async componentDidUpdate(prevProps) {
 		if (this.props.user !== prevProps.user) {
 			this.refresh()
+			console.log('%c refreshing ', 'background: darkcyan; color: #fff; padding: 2px;')
 		}
 	}
 
 	refresh = async () => {
 		if (!this.props.user) {
-			return
+			return this.setState({ items: [] })
 		}
 		const token = getToken()
 		const { user_id } = this.props.user
@@ -68,6 +70,7 @@ class MyPage extends Component {
 	}
 
 	render() {
+		console.log('%c rerendering ', 'background: darkcyan; color: #fff; padding: 2px;')
 		const { user, setUser } = this.props
 		const { items, showLogin } = this.state
 		return (

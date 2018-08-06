@@ -37,5 +37,5 @@ a {
 .hljs-params,
 .hljs-meta,
 .hljs-link {
-	color: #58f8e8;
+	color: #58f8e8 !important;
 }
