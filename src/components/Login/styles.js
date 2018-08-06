@@ -63,7 +63,7 @@ export const Selection = styled.button`
 		`
 
       background: transparent;
-      color: #59F8E8;
+      color: #FFF;
     `};
 `
 export const InputField = styled.div`
