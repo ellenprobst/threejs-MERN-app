@@ -28,3 +28,14 @@ a {
 * {
 	box-sizing: border-box;
 }
+
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #58f8e8;
+}

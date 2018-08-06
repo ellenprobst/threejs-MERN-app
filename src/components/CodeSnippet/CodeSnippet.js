@@ -28,9 +28,13 @@ const Wrapper = styled.div`
 	right: 0;
 	padding: 0 25px 25px;
 	background: #2b303b;
-	animation: ${xfade} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+	animation: ${xfade} 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
 		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+
+	@media (max-width: 940px) {
+		left: 20px;
+	}
 `
 
 const CloseButton = Round.extend`
@@ -40,17 +44,17 @@ const CloseButton = Round.extend`
 	left: -20px;
 `
 
-const Copy = Button.extend`
-	display: block;
-	margin-left: auto;
-`
-
 class CodeSnippet extends Component {
 	state = {
 		isCopied: false
 	}
 
-	handleClick = () => this.setState({ isCopied: true })
+	handleClick = () => {
+		this.setState({ isCopied: true })
+		setTimeout(() => {
+			this.setState({ isCopied: false })
+		}, 1500)
+	}
 
 	render() {
 		const { color, size, geometrye, isAnimated, isWireframe, close } = this.props
@@ -87,7 +91,7 @@ var animate = function () {
 
 animate();`}
 				</Highlight>
-				<Copy onClick={this.handleClick}>{this.state.isCopied ? 'Copied' : 'Copy'}</Copy>
+				<Button onClick={this.handleClick}>{this.state.isCopied ? 'Copied!' : 'Copy'}</Button>
 			</Wrapper>
 		)
 	}

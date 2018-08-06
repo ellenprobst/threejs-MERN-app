@@ -62,17 +62,26 @@ class Canvas extends React.Component {
 	}
 
 	render() {
+		if (geometry === null) return
+
+		const { color, geometry } = this.props
 		const width = window.innerWidth // canvas width
 		const height = window.innerHeight // canvas height
-
-		const color = this.props.color
 
 		const styles = {
 			background: `linear-gradient(to bottom, ${color[0]}, ${color[1]})`
 		}
 
-		if (this.props.geometry === null) return
-		const geometry = this.generateMesh(this.props.geometry)
+		const getGeometry = this.generateMesh(geometry)
+		const getScale = () => {
+			if (geometry === 'torus') {
+				return new THREE.Vector3(0.03, 0.03, 0.03)
+			} else if (geometry === 'torusKnot') {
+				return new THREE.Vector3(0.03, 0.03, 0.03)
+			} else {
+				return new THREE.Vector3(1, 1, 1)
+			}
+		}
 
 		return (
 			<React3
@@ -101,8 +110,8 @@ class Canvas extends React.Component {
 					<directionalLight color={color[1]} position={this.directionalLightPositionOne} lookAt={this.scenePosition} />
 					<directionalLight color={color[0]} position={this.directionalLightPositionTwo} lookAt={this.scenePosition} />
 					<directionalLight color={'#fc6767'} position={this.directionalLightPositionFix} lookAt={this.scenePosition} />
-					<mesh rotation={this.state.cubeRotation}>
-						{geometry}
+					<mesh rotation={this.state.cubeRotation} scale={getScale()}>
+						{getGeometry}
 						<meshPhongMaterial
 							side={THREE.DoubleSide}
 							wireframe={this.props.isWireframe}

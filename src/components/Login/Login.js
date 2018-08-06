@@ -49,7 +49,7 @@ class Login extends Component {
 							Login
 						</Selection>
 
-						<Selection active={type === 'sign up'} onClick={() => this.changeForm('sign up')}>
+						<Selection active={type === 'signup'} onClick={() => this.changeForm('signup')}>
 							Sign up
 						</Selection>
 					</SelectionGroup>
