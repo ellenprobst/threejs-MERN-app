@@ -148,16 +148,19 @@ class Inputs extends Component {
 					</Label>
 				</Container>
 
-				<Container>
-					<FormButton hide={showInputs} type="button" onClick={() => this.showInput('animate')}>
-						<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
-						<Tooltip>animate</Tooltip>
-					</FormButton>
-					<Label active={activeItem === 'animate'}>
-						animate:
-						<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
-					</Label>
-				</Container>
+				{
+					//
+					// <Container>
+					// 	<FormButton hide={showInputs} type="button" onClick={() => this.showInput('animate')}>
+					// 		<ThreeDRotationIcon style={{ color: '#59f8e8' }} />
+					// 		<Tooltip>animate</Tooltip>
+					// 	</FormButton>
+					// 	<Label active={activeItem === 'animate'}>
+					// 		animate:
+					// 	<input name="animate" type="checkbox" checked={isAnimated} onChange={this.handleChange} />
+					// 	</Label>
+					// </Container>
+				}
 
 				<Label hide={showInputs} active={true}>
 					<input
