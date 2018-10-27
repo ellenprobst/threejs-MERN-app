@@ -12,9 +12,7 @@ const slide = keyframes`
 	}
 `
 
-export const Container = styled.div`
-	min-height: calc(100vh - 85px);
-`
+export const Container = styled.div``
 
 export const Title = styled.h1`
 	font-size: 60px;

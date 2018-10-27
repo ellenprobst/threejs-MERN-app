@@ -50,10 +50,17 @@ class CodeSnippet extends Component {
 	}
 
 	handleClick = () => {
+		this.copyCode()
 		this.setState({ isCopied: true })
 		setTimeout(() => {
 			this.setState({ isCopied: false })
 		}, 1500)
+	}
+
+	copyCode() {
+		const code = document.getElementById('code')
+		// code.select()
+		// document.execCommand('copy')
 	}
 
 	render() {
@@ -63,8 +70,9 @@ class CodeSnippet extends Component {
 				<CloseButton red onClick={close}>
 					<Close />
 				</CloseButton>
-				<Highlight language="javascript">
-					{`
+				<div id="code">
+					<Highlight language="javascript">
+						{`
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 2000 );
 
@@ -90,7 +98,9 @@ var animate = function () {
 };
 
 animate();`}
-				</Highlight>
+					</Highlight>
+				</div>
+
 				<Button onClick={this.handleClick}>{this.state.isCopied ? 'Copied!' : 'Copy'}</Button>
 			</Wrapper>
 		)

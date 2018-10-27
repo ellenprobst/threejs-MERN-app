@@ -67,6 +67,7 @@ export const Button = styled.button`
 `
 
 export const Round = styled.button`
+	position: relative;
 	outline: none;
 	margin: 10px;
 	border: none;

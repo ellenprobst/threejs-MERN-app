@@ -34,6 +34,7 @@ export const FormButton = Round.extend`
 `
 
 export const Toggle = styled.div`
+position: relative;
 display flex;
 justify-content: center;
 align-items:center;
